@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Park from "./components/pages/Park";
+import NotFound from "./components/pages/NotFound";
 
-function App() {
+import NpsState from "./context/nps/NpsState";
+
+//*main css for every component
+import "./App.css";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NpsState>
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          {/* unique parkCode for each */}
+          <Route exact path='/park/:parkCode' component={Park} />
+        </Switch>
+      </Router>
+    </NpsState>
   );
-}
+};
 
 export default App;
