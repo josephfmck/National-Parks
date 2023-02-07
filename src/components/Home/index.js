@@ -1,201 +1,61 @@
+import React, { useState, useEffect } from 'react';
+
 //* bootstrap components 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 
+//*API
+import axios from 'axios';
+import { searchNPSAPI, parksWithinUSA } from '../../api/api';
 
+//* CSS
 import './index.scss';
 
+
+
+// useEffect((callApi) => {
+//   setApiState(callApi());
+// }, []);
 
 
 //add Routes, start with path "/" and <Layout/> with <Home/> 
 function Home() {
 
-  //*STATE
-  // 
+//*STATE
+const [apiState, setApiState] = useState([]);
+//? if data is still being fetched or not, false once loaded
+const [isLoading, setIsLoading] = useState(true);
 
+//*NPS API
+// let apiParksInUSA;
+// const callApi = async () => {
+//   let apiData = await searchNPSAPI();
+//   console.log({apiData});
+//   setApiState(apiData);
+
+
+//   apiParksInUSA = await parksWithinUSA();
+//   console.log({apiParksInUSA});
+
+//   return apiData;
+// };
+
+// callApi();
 
 
   //*useEffect 
-
-//*NPS API
-
-//!Vanilla JS
-const NPSKey = "CVikA0Ur6Sc8elaYgUcnOM9metTMgYqJalcZvYhN";
-//Ex. https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=CVikA0Ur6Sc8elaYgUcnOM9metTMgYqJalcZvYhN
-
-const all50StatesArr = [
-  { state: "Alabama", abrev: "AL" },
-  { state: "Alaska", abrev: "AK" },
-  { state: "Arizona", abrev: "AZ" },
-  { state: "Arkansas", abrev: "AR" },
-  { state: "California", abrev: "CA" },
-  { state: "Colorado", abrev: "CO" },
-  { state: "Connecticut", abrev: "CT" },
-  { state: "Delaware", abrev: "DE" },
-  { state: "Florida", abrev: "FL" },
-  { state: "Georgia", abrev: "GA" },
-  { state: "Hawaii", abrev: "HI" },
-  { state: "Idaho", abrev: "ID" },
-  { state: "Illinois", abrev: "IL" },
-  { state: "Indiana", abrev: "IN" },
-  { state: "Iowa", abrev: "IA" },
-  { state: "Kansas", abrev: "KS" },
-  { state: "Kentucky", abrev: "KY" },
-  { state: "Louisiana", abrev: "LA" },
-  { state: "Maine", abrev: "ME" },
-  { state: "Maryland", abrev: "MD" },
-  { state: "Massachusetts", abrev: "MA" },
-  { state: "Michigan", abrev: "MI" },
-  { state: "Minnesota", abrev: "MN" },
-  { state: "Mississippi", abrev: "MS" },
-  { state: "Missouri", abrev: "MO" },
-  { state: "Montana", abrev: "MT" },
-  { state: "Nebraska", abrev: "NE" },
-  { state: "Nevada", abrev: "NV" },
-  { state: "New Hampshire", abrev: "NH" },
-  { state: "New Jersey", abrev: "NJ" },
-  { state: "New Mexico", abrev: "NM" },
-  { state: "New York", abrev: "NY" },
-  { state: "North Carolina", abrev: "NC" },
-  { state: "North Dakota", abrev: "ND" },
-  { state: "Ohio", abrev: "OH" },
-  { state: "Oklahoma", abrev: "OK" },
-  { state: "Oregon", abrev: "OR" },
-  { state: "Pennsylvania", abrev: "PA" },
-  { state: "Rhode Island", abrev: "RI" },
-  { state: "South Carolina", abrev: "SC" },
-  { state: "South Dakota", abrev: "SD" },
-  { state: "Tennessee", abrev: "TN" },
-  { state: "Texas", abrev: "TX" },
-  { state: "Utah", abrev: "UT" },
-  { state: "Vermont", abrev: "VT" },
-  { state: "Virginia", abrev: "VA" },
-  { state: "Washington", abrev: "WA" },
-  { state: "West Virginia", abrev: "WV" },
-  { state: "Wisconsin", abrev: "WI" },
-  { state: "Wyoming", abrev: "WY" },
-];
-
-const statesAbrev50 = all50StatesArr.map((state) => state.abrev);
-console.log(statesAbrev50);
-
-
-
-//* Return data from API
-const searchAllNPSAPI = async () => {
-  const res = await fetch(
-    `https://developer.nps.gov/api/v1/parks?limit=467&api_key=${NPSKey}`
-  );
-  const data = await res.json();
-
-  console.log(data);
-  //2nd national park
-  console.log(data.data[0]);
-
-  //national park's states
-  console.log(data.data[0].states);
-
-
-
-
-  //*NEED 
-  //  fullName, states,  
-
-  let parksInUSA = []
-  for(let i = 0; i < data.data.length; i++){
-
-    //*API states data is included in the states arr 
-    if(statesAbrev50.includes(data.data[i].states)) {
-          //add that park into obj
-    let obj = {
-      i,
-      fullName: data.data[i].fullName,
-      states: data.data[i].states
-    };
-
-    parksInUSA.push(obj);
-    }
+  //?fires when component loads(onpage load)
+useEffect(() => { 
+  //*func declares
+  const fetchData = async () => {
+    const result = axios(`https://developer.nps.gov/api/v1/parks?limit=467&api_key=CVikA0Ur6Sc8elaYgUcnOM9metTMgYqJalcZvYhN`);
+    console.log(result);
   }
 
-  console.log({parksInUSA});
-
-
-
-  //*Sort out all the parks by state 
-  //loop parksInUSA
-  //loop all50StatesArr find the state that matches the park's state
-
-
-  //* filled with objects
-  let parksHalfSorted = [];
-  //obj "state" = "KS", {park}, park2 
-
-  //*loop through all 50 states abrev
-  statesAbrev50.map((abrev) => {
-
-    //*loop through 368 parksInUSA DATA
-    parksInUSA.map((park) => {
-      // the park data has the current abrev then push it
-      if(park.states === abrev){
-        parksHalfSorted.push(park);
-        //?return updated parksHalfSorted
-        return parksHalfSorted;
-      }
-    });
-
-    //?return it again
-    return parksHalfSorted;
-  });
-
-  console.log({parksHalfSorted});
-
-  //? got them in order now want to sort them in 50
-  //*SORT IT OUT 
-  let sortedParksByState2D = [];
-
-  //50 states runs
-  for(let i = 0; i < statesAbrev50.length; i++){
-    let parksInOneState = [];
-    let currentState = statesAbrev50[i];
-
-    //368 parks runs
-    for(let j = 0; j < parksHalfSorted.length; j++){
-      let currentPark = parksHalfSorted[j];
-
-
-      // if the one of 368 state is equal to the abrev
-      if(currentPark.states === currentState){
-        // if it is then push it into states obj 
-        let obj = {
-          "state": currentState,
-          "park": currentPark
-        };
-
-        parksInOneState.push(obj);
-      }
-    }
-
-    sortedParksByState2D.push(parksInOneState);
-  }
-
-  console.log(sortedParksByState2D);
-
-
-
-  //FIND PARK WITH THAT STATE ABBREV 
-
-
-
-
-  return data;
-};
-
-
-//execute function 
-searchAllNPSAPI();
-
-
+  //*func calls
+  fetchData();
+}, []);
 
 
   //*RENDER
@@ -225,7 +85,7 @@ searchAllNPSAPI();
             </Form.Group>
 
             <div className="label-break">            
-              <p className='my-0'>Or</p>
+              <p className='my-0'>Or...</p>
             </div>
 
             {/* Brings up component list of all parks within state */}
@@ -257,6 +117,7 @@ searchAllNPSAPI();
     <section id="parks-by-state-section">
       <Container>
         <h1>This will be parks section of looped imgs of all parks in specific state</h1>
+        {/* <p>{`${apiState}`}</p> */}
       </Container>
     </section>
     </>
