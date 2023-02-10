@@ -78,7 +78,14 @@
     } //!#search-form
 } 
 
+section#parks-by-state-section {
+    .container {
+        h1 {
+            color: white;
+        }
 
-  
-
-  
+        h3 {
+            color: white;
+        }
+    }
+}
