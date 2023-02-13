@@ -82,82 +82,12 @@ function Home() {
 const [apiState, setApiState] = useState([]);
 //? if data is still being fetched or not, false once loaded
 const [isLoading, setIsLoading] = useState(true);
-//? parks data sorted by state
-const [apiParksSorted2D, setApiParksSorted2D] = useState([]);
+const [statesAbrev50State, setStatesAbrev50State] = useState([]);
 
 //*FUNCTIONS
-// const usaParksData
-
-const usaParksData = async (apiStateDATA) => {
-  let parksInUSA = [];
-  for(let i = 0; i < apiStateDATA.data.length; i++){
-    //*API states data is included in the states arr 
-    if(statesAbrev50.includes(apiStateDATA.data[i].states)) {
-      //add that park into obj
-      let obj = {
-        i,
-        img: apiStateDATA.data[i].images[0].url,
-        fullName: apiStateDATA.data[i].fullName,
-        states: apiStateDATA.data[i].states,
-        description: apiStateDATA.data[i].description,
-        url: apiStateDATA.data[i].url
-      };
-    
-        parksInUSA.push(obj);
-    }
-  }
 
 
-  //? got them in order now want to sort them in 50
-  //*SORT IT OUT 
-  let sortedParksByState2D = [];
 
-    //50 states runs
-    for(let i = 0; i < statesAbrev50.length; i++){
-      let parksInOneState = [];
-      let currentStateAbrev = statesAbrev50[i];
-
-      //368 parks runs
-      for(let j = 0; j < parksInUSA.length; j++){
-        let currentParkObj = parksInUSA[j];
-
-        // if the one of 368 state is equal to the abrev
-        if(currentParkObj.states === currentStateAbrev){
-          // if it is then push it into states obj 
-          // let obj = {
-          //     "state": currentStateAbrev,
-          //     "park": currentParkObj
-          // };
-
-          let obj = currentParkObj;
-
-          parksInOneState.push(obj);
-          }
-      }
-      sortedParksByState2D.push(parksInOneState);
-    }
-
-  //*!arr of 370 parks in USA
-  console.log(parksInUSA);
-  console.log(sortedParksByState2D);
-
-  const returnObj2D = [];
-  // returnObj2D.push(parksInUSA);
-  returnObj2D.push(sortedParksByState2D);
-
-  setApiParksSorted2D(returnObj2D);
-  console.log(returnObj2D);
-  //? arr of parks in one state
-  console.log(returnObj2D[0][0]);
-  //? 1 park
-  console.log(returnObj2D[0][0][0]);
-  //? 1 img 
-  console.log(returnObj2D[0][0][0].img);
-
-
-  
-  return returnObj2D;
-}
 
   //*useEffect 
   //?fires when component loads(onpage load)
@@ -171,8 +101,7 @@ useEffect(() => {
     //raw 370 data
     setApiState(result.data);
     setIsLoading(false);
-    //func get parks sorted by states
-    usaParksData(result.data);
+    setStatesAbrev50State(statesAbrev50);
   }
 
   //*func calls
@@ -181,8 +110,6 @@ useEffect(() => {
 
 
 
-//*Playing with State 
-// console.log(apiParksSorted2D);
 // //? arr of parks in one state
 // console.log(apiParksSorted2D[0][0]);
 // //? 1 park
@@ -199,7 +126,7 @@ useEffect(() => {
     
     {/* *search-section form takes in API data */}
     <SearchForm isLoading={isLoading} apiState={apiState}/>
-    <List isLoading={isLoading} apiParksSorted2D={apiParksSorted2D}/>
+    <List isLoading={isLoading} apiState={apiState} statesAbrev50Prop={statesAbrev50State}/>
     </>
   );
 }
