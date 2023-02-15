@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+//*API
+import axios from 'axios';
+
 import './index.scss'
 //* assets
 import parkNameImg from '../../assets/images/park-name.jpg';
@@ -15,98 +18,91 @@ import Button from 'react-bootstrap/Button'
 //? span is for identifying body tag and end of html tag
 
 const List = ({isLoading, apiState, statesAbrev50Prop}) => {
-  //*STATE 
-  //? parks data sorted by state
-  const [apiParksSorted2D, setApiParksSorted2D] = useState([]);
-  const [parkImg, setParkImg] = useState('');
 
+  //*STATE
+  const [listIsloading, setListIsLoading] = useState(true);
+  const [sortedParksByState2D, setSortedParksByState2D] = useState([]);
 
+  useEffect(() => {
+    console.log('hit useEffect');
 
-  //*useEffect 
-  //?using for when compnent updates to grab API data correctly 
-  useEffect(() => { 
-    //*func declares
+    //func declares 
+    const sortParksByState2D = async () => {
+          //*NPS API
+    const result = await axios.get(`https://developer.nps.gov/api/v1/parks?limit=467&api_key=CVikA0Ur6Sc8elaYgUcnOM9metTMgYqJalcZvYhN`);
 
-    
-  //*FUNCTIONS
-  const usaParksData = async () => {
-    let parksInUSA = [];
-    for(let i = 0; i < apiState.data.length; i++){
-      //*API states data is included in the states arr 
-      if(statesAbrev50Prop.includes(apiState.data[i].states)) {
-        //add that park into obj
-        let obj = {
-          i,
-          img: apiState.data[i].images[0].url,
-          fullName: apiState.data[i].fullName,
-          states: apiState.data[i].states,
-          description: apiState.data[i].description,
-          url: apiState.data[i].url
-        };
-      
-          parksInUSA.push(obj);
+      console.log('hit');
+      console.log(result.data);
+      if(result.data.length !== 0) {
+        
+      let parksInUSA = [];
+      for(let i = 0; i < result.data.data.length; i++){
+        //*API states data is included in the states arr 
+        if(statesAbrev50Prop.includes(result.data.data[i].states)) {
+          //add that park into obj
+          let obj = {
+            i,
+            img: result.data.data[i].images[0].url,
+            fullName: result.data.data[i].fullName,
+            states: result.data.data[i].states,
+            description: result.data.data[i].description,
+            url: result.data.data[i].url
+          };
+            
+            parksInUSA.push(obj);
+        }
       }
-    }
-  
-    //? got them in order now want to sort them in 50
-    //*SORT IT OUT 
-    let sortedParksByState2D = [];
-  
+      console.log({parksInUSA});
+    
+      //*SORT IT OUT 
+      let sortedParksByState2D = [];
+        
       //50 states runs
       for(let i = 0; i < statesAbrev50Prop.length; i++){
         let parksInOneState = [];
         let currentStateAbrev = statesAbrev50Prop[i];
-  
+    
         //368 parks runs
         for(let j = 0; j < parksInUSA.length; j++){
           let currentParkObj = parksInUSA[j];
-  
+    
           // if the one of 368 state is equal to the abrev
           if(currentParkObj.states === currentStateAbrev){
             // if it is then push it into states obj 
-  
             let obj = currentParkObj;
-  
             parksInOneState.push(obj);
-            }
+          }
         }
         sortedParksByState2D.push(parksInOneState);
       }
+      console.log({sortedParksByState2D});
+      Array.from(sortedParksByState2D);
+      
+      setSortedParksByState2D(sortedParksByState2D);
+      setListIsLoading(false);
+      } else {
+        //*rerun it till it has data 
+        sortParksByState2D();
+      }
+    }
   
-    //*!arr of 370 parks in USA
-    console.log(parksInUSA);
-    console.log(sortedParksByState2D);
-  
-    const returnObj2D = [];
-    // returnObj2D.push(parksInUSA);
-    returnObj2D.push(sortedParksByState2D);
   
   
-    //*SET STATE
-    setApiParksSorted2D(returnObj2D);
-    console.log(returnObj2D);
-    setParkImg(returnObj2D[0][0][0].img);
 
-    // //? arr of parks in one state
-    // console.log(returnObj2D[0][0]);
-    // //? 1 park
-    // console.log(returnObj2D[0][0][0]);
-    // //? 1 img 
-    // console.log(returnObj2D[0][0][0].img);
-  }
+
+    //func calls 
+    sortParksByState2D();
+  },[statesAbrev50Prop]);
 
   
-    //*func calls
-    //func get parks sorted by states
-    usaParksData();
-  }, [apiState, statesAbrev50Prop]);
+
+  // console.log(apiState);
+  // console.log(statesAbrev50Prop);
+    
 
 
 
-    console.log(isLoading);
-    console.log(apiParksSorted2D);
-    console.log(parkImg);
-    return isLoading ? (<h1>List Loading...</h1>) : ( 
+    return listIsloading ? (<h1>List Loading...</h1>) : ( 
     <>
 
     {/* SECTION Parks by State */}
@@ -115,62 +111,37 @@ const List = ({isLoading, apiState, statesAbrev50Prop}) => {
         <h1>This will be parks section of looped imgs of all parks in specific state</h1>
         {/* <p>{`${apiState}`}</p> */}
         <Row className='my-3'>
-          <Col>
-            <Card style={{ width: '18rem', height:'100%' }}>
-              <Card.Img variant="top" src={parkNameImg} />
-              <Card.Body>
-                <Card.Title>Abraham Lincoln Birthplace National Historical Park</Card.Title>
-                <Button variant="primary">Select</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ width: '18rem', height:'100%' }}>
-              <Card.Img variant="top" src={parkImg} />
-              <Card.Body>
-                <Card.Title>Acadia National Park</Card.Title>
-                <Button variant="primary">Select</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ width: '18rem', height:'100%' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Adams National Historical Park</Card.Title>
-                <Button variant="primary">Select</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row className='my-3'>
-          <Col>
-            <Card style={{ width: '18rem', height:'100%' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Abraham Lincoln Birthplace National Historical Park</Card.Title>
-                <Button variant="primary">Select</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ width: '18rem', height:'100%' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Acadia National Park</Card.Title>
-                <Button variant="primary">Select</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ width: '18rem', height:'100%' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Adams National Historical Park</Card.Title>
-                <Button variant="primary">Select</Button>
-              </Card.Body>
-            </Card>
-          </Col>
+
+      {console.log(sortedParksByState2D)}
+      {console.log(sortedParksByState2D[0])}
+      {console.log(sortedParksByState2D[0][0])}
+
+      {/* sortedParksByState2D[0] = Alabama arr of 8 parks */}
+        { sortedParksByState2D[0].map((park) => {
+          return (
+            <Col>
+              <Card style={{ width: '18rem', height:'100%' }}>
+                <Card.Img variant="top" src={park.img} />
+                <Card.Body>
+                  <Card.Title>Abraham Lincoln Birthplace National Historical Park</Card.Title>
+                  <Button variant="primary">Select</Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          )
+        })}
+
+            <Col>
+              <Card style={{ width: '18rem', height:'100%' }}>
+                <Card.Img variant="top" src='' />
+                <Card.Body>
+                  <Card.Title>Abraham Lincoln Birthplace National Historical Park</Card.Title>
+                  <Button variant="primary">Select</Button>
+                </Card.Body>
+              </Card>
+            </Col>
+
+
         </Row>
       </Container>
     </section>

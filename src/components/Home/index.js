@@ -6,10 +6,7 @@ import List from '../List';
 
 //* bootstrap components 
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button'
+
 
 
 //*API
@@ -79,14 +76,14 @@ const statesAbrev50 = all50StatesArr.map((state) => state.abrev);
 function Home() {
 
 //*STATE
-const [apiState, setApiState] = useState([]);
+const [apiState, setApiState] = useState(null);
 //? if data is still being fetched or not, false once loaded
 const [isLoading, setIsLoading] = useState(true);
-const [statesAbrev50State, setStatesAbrev50State] = useState([]);
+const [statesAbrev50Prop, setStatesAbrev50Prop] = useState(statesAbrev50);
+
+// const [apiStateSorted, setApiStateSorted] = useState(null);
 
 //*FUNCTIONS
-
-
 
 
   //*useEffect 
@@ -96,24 +93,28 @@ useEffect(() => {
   const fetchData = async () => {
     //*NPS API
     const result = await axios.get(`https://developer.nps.gov/api/v1/parks?limit=467&api_key=CVikA0Ur6Sc8elaYgUcnOM9metTMgYqJalcZvYhN`);
-    console.log(result.data);
+    console.log({'apiRAW': result.data});
 
+
+    //*!arr of 370 parks in USA
+
+    //!SORT IT 
+    // const resultSortedParksByState = sortParksByState(result.data);
+
+
+
+    //*SET STATE 
     //raw 370 data
     setApiState(result.data);
     setIsLoading(false);
-    setStatesAbrev50State(statesAbrev50);
+
+    //
+
   }
 
   //*func calls
   fetchData();
 }, []);
-
-
-
-// //? arr of parks in one state
-// console.log(apiParksSorted2D[0][0]);
-// //? 1 park
-// console.log(apiParksSorted2D[0][0][0]);
 
 
   //*RENDER
@@ -126,7 +127,7 @@ useEffect(() => {
     
     {/* *search-section form takes in API data */}
     <SearchForm isLoading={isLoading} apiState={apiState}/>
-    <List isLoading={isLoading} apiState={apiState} statesAbrev50Prop={statesAbrev50State}/>
+    <List isLoading={isLoading} apiState={apiState} statesAbrev50Prop={statesAbrev50Prop}/>
     </>
   );
 }
