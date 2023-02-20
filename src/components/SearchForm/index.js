@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 //* bootstrap components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -61,8 +63,28 @@ const usaStatesArr = [
 
 
 
+
+
 //if isLoading false then show the form else show a Loading... message 
-const SearchForm = ({isLoading, apiState}) => {
+const SearchForm = ({isLoading, apiState, selectStateIdxArr, onChangeStateOption}) => {
+  //!STATE 
+  // const [stateOptionVal, setStateOptionVal] = useState(null);
+
+
+  //!EVENT LISTENERS
+  const onChangeOption = (e) => {
+    e.preventDefault();
+
+    console.log(e.target.value);
+
+    //set to option event value (0-49)
+    // setStateOptionVal(e.target.value);
+    onChangeStateOption(e.target.value);
+  };
+  
+  
+  
+  //!RENDER
   return isLoading ? (<h1>Form Loading...</h1>) : (
     <>
       <section id="search-section">
@@ -95,14 +117,16 @@ const SearchForm = ({isLoading, apiState}) => {
                 <Form.Label className="search-label">
                   Search a Park By State
                 </Form.Label>
+                {/* onChange set 0-49 value to state  */}
                 <Form.Select
                   className="search-selectTag mb-5"
                   aria-label="Select A Park"
+                  onChange={onChangeOption}
                 >
                   <option>Select a State</option>
                   {usaStatesArr.map((usaStatesArr, idx) => {
                     return (
-                      <option key={idx} value={usaStatesArr.state}>
+                      <option key={idx} value={selectStateIdxArr[idx]}>
                         {usaStatesArr.state}
                       </option>
                     );

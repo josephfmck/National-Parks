@@ -17,7 +17,7 @@ import Button from 'react-bootstrap/Button'
 //class="App" main wrapper of application
 //? span is for identifying body tag and end of html tag
 
-const List = ({isLoading, apiState, statesAbrev50Prop}) => {
+const List = ({isLoading, apiState, statesAbrev50Prop, selectedStateVal}) => {
 
   //*STATE
   const [listIsloading, setListIsLoading] = useState(true);
@@ -112,36 +112,25 @@ const List = ({isLoading, apiState, statesAbrev50Prop}) => {
         {/* <p>{`${apiState}`}</p> */}
         <Row className='my-3'>
 
-      {console.log(sortedParksByState2D)}
-      {console.log(sortedParksByState2D[0])}
-      {console.log(sortedParksByState2D[0][0])}
+          {/* sortedParksByState2D[0] = Alabama arr of 8 parks */}
+          {console.log(sortedParksByState2D)}
+          {console.log(sortedParksByState2D[0])}
+          {console.log(sortedParksByState2D[0][0])}
 
-      {/* sortedParksByState2D[0] = Alabama arr of 8 parks */}
-        { sortedParksByState2D[0].map((park) => {
-          return (
-            <Col>
-              <Card style={{ width: '18rem', height:'100%' }}>
-                <Card.Img variant="top" src={park.img} />
-                <Card.Body>
-                  <Card.Title>Abraham Lincoln Birthplace National Historical Park</Card.Title>
-                  <Button variant="primary">Select</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          )
-        })}
-
-            <Col>
-              <Card style={{ width: '18rem', height:'100%' }}>
-                <Card.Img variant="top" src='' />
-                <Card.Body>
-                  <Card.Title>Abraham Lincoln Birthplace National Historical Park</Card.Title>
-                  <Button variant="primary">Select</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-
-
+          {/* && = if selectedStateVal isnt null, is null until you select state option */}
+          {selectedStateVal && sortedParksByState2D[selectedStateVal].map((park) => {
+            return (
+              <Col>
+                <Card style={{ width: '18rem', height:'100%' }}>
+                  <Card.Img variant="top" src={park.img} />
+                  <Card.Body>
+                    <Card.Title>{park.fullName}</Card.Title>
+                    <Button variant="primary">Select</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            )
+          })}
         </Row>
       </Container>
     </section>

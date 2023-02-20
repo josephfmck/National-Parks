@@ -16,6 +16,7 @@ import axios from 'axios';
 //* CSS
 import './index.scss';
 
+//!STATIC VARIABLES
 const all50StatesArr = [
   { state: "Alabama", abrev: "AL" },
   { state: "Alaska", abrev: "AK" },
@@ -72,20 +73,35 @@ const all50StatesArr = [
 const statesAbrev50 = all50StatesArr.map((state) => state.abrev);
 // console.log(statesAbrev50);
 
+const statesIndex50 = all50StatesArr.map((state, index) => index);
+console.log({statesIndex50});
+
+//!RENDER
 //add Routes, start with path "/" and <Layout/> with <Home/> 
 function Home() {
 
-//*STATE
+//!STATE
 const [apiState, setApiState] = useState(null);
 //? if data is still being fetched or not, false once loaded
 const [isLoading, setIsLoading] = useState(true);
 const [statesAbrev50Prop, setStatesAbrev50Prop] = useState(statesAbrev50);
 
+const [selectStateIdxArr, setSelectStateIdxArr] = useState(null);
+const [selectedStateVal, setSelectedStateVal] = useState(null);
 // const [apiStateSorted, setApiStateSorted] = useState(null);
 
-//*FUNCTIONS
+//!EVENT HANDLERS 
+//* onclick state option, pass on value (0-49)
+const onChangeStateOption = (stateValue) => {
+  console.log({"stateSelected": stateValue});
+
+  //set the state to the value 
+    //?will be used for <List/> showing parks in state 
+  setSelectedStateVal(stateValue);
+}
 
 
+//!USEEFFECT - FUNCS CALLED EACH RENDER
   //*useEffect 
   //?fires when component loads(onpage load)
 useEffect(() => { 
@@ -107,15 +123,12 @@ useEffect(() => {
     //raw 370 data
     setApiState(result.data);
     setIsLoading(false);
-
-    //
-
+    setSelectStateIdxArr(statesIndex50);
   }
 
   //*func calls
   fetchData();
 }, []);
-
 
   //*RENDER
   return (
@@ -126,8 +139,8 @@ useEffect(() => {
     </Container>
     
     {/* *search-section form takes in API data */}
-    <SearchForm isLoading={isLoading} apiState={apiState}/>
-    <List isLoading={isLoading} apiState={apiState} statesAbrev50Prop={statesAbrev50Prop}/>
+    <SearchForm isLoading={isLoading} apiState={apiState} selectStateIdxArr={selectStateIdxArr} onChangeStateOption={onChangeStateOption}/>
+    <List isLoading={isLoading} apiState={apiState} statesAbrev50Prop={statesAbrev50Prop} selectedStateVal={selectedStateVal}/>
     </>
   );
 }
