@@ -108,7 +108,6 @@ const List = ({isLoading, apiState, statesAbrev50Prop, selectedStateVal}) => {
     {/* SECTION Parks by State */}
     <section id="parks-by-state-section">
       <Container>
-        <h1>This will be parks section of looped imgs of all parks in specific state</h1>
         {/* <p>{`${apiState}`}</p> */}
         <Row className='my-3'>
 
