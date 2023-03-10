@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react';
 //*API
 import axios from 'axios';
 
+//* bootstrap components 
+import Container from 'react-bootstrap/Container';
 //* CSS
 import './index.scss';
+
+
 
 
 const ParkPage = () => {
@@ -32,9 +36,27 @@ const ParkPage = () => {
 
 
     return dataLoading ? (<h1>Park Loading...</h1>) : (
-        <>
-        <h1>{parkData.data[0].fullName}</h1>
-        </>
+        <div id="bg-img" 
+            className=''
+            style={{
+                backgroundImage: `url(${parkData.data[0].images[0].url})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
+        <Container id="header" className="">
+            <h1 className='text-center'><strong>{parkData.data[0].fullName}</strong></h1>
+        </Container>
+        <Container id="container">
+            <h3>{parkData.data[0].description}</h3>
+            <h3>{parkData.data[0].description}</h3>
+            <h3>{parkData.data[0].directionsInfo}</h3>
+            <h3>{parkData.data[0].parkCode}</h3>
+            <h3>{parkData.data[0].directionsUrl}</h3>
+            <h3>{parkData.data[0].url}</h3>
+        </Container>
+        </div>
     )
 }
 
