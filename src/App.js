@@ -1,12 +1,13 @@
-import React from 'react';
+//*Routing Pages
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
-//main layout of all pages
-import Layout from './components/Layout';
-//route pages
-import Home from './components/Home';
-import ParkPage from './components/ParkPage';
+//*route pages
+import Home from './pages/Home';
+import Park from './pages/Park';
+
+//! old pages
+// import Home from './components/Home';
+// import ParkPage from './components/ParkPage';
 
 
 
@@ -14,12 +15,13 @@ import ParkPage from './components/ParkPage';
 function App() {
   return (
     <>
-    <Routes>
-      <Route path="/" element={<Layout />} >
-        <Route index element={<Home />} />
-        <Route path="/park" element={<ParkPage />} />
-      </Route>
-    </Routes>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          {/* <Route path="/park/:parkCode" element={<Park/>} /> */}
+          {/* <Route path="/park" element={<Park/>} /> */}
+        </Routes>
+      </Router>
    </>
   );
 }

@@ -7,8 +7,6 @@ import List from '../List';
 //* bootstrap components 
 import Container from 'react-bootstrap/Container';
 
-
-
 //*API
 import axios from 'axios';
 // import { searchNPSAPI, parksWithinUSA } from '../../api/api';
