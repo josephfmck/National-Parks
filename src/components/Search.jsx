@@ -15,7 +15,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Spinner from "./Spinner";
 
 //*
-import {callLoading} from '../features/slice'
+import {fetchData, resetStatus} from '../features/slice'
 
 
 const usaStatesArr = [
@@ -81,38 +81,33 @@ const usaStatesArr = [
 //if isLoading false then show the form else show a Loading... message 
 const Search = () => {
   //!STATE 
-  // const [stateOptionVal, setStateOptionVal] = useState(null);
+  const dispatch = useDispatch(); 
 
-    const dispatch = useDispatch(); 
-
-  //!grab state from Slice
-    //*grab state from store Slice 
-    const {isLoading} = useSelector((state) => state.slice);
+  //*grab state from store Slice 
+  const {apiData, isLoading, isSuccess, isError, message} = useSelector((state) => state.slice);
 
 
 
   //!EVENT LISTENERS
-    // const onChangeOption = (e) => {
-    //     e.preventDefault();
 
-    //     console.log(e.target.value);
+  //*useEffect - check for changes in state 
+  //? [] - fires off if state changes 
+  useEffect(() => {
 
-    //     //set to option event value (0-49)
-    //     // setStateOptionVal(e.target.value);
-    //     onChangeStateOption(e.target.value);
-    // };
+    dispatch(fetchData());
 
-    useEffect(() => {
+    //reset status, keeping ONLY api data same
+    // return () => {
+    //   dispatch(resetStatus());
+    // }
 
-        //on page load set loading to true
-        dispatch(callLoading());
-    });
+  }, [dispatch]);
 
-//!RUN SPINNER BEFORE RENDER 
-if(isLoading) {
-    return <Spinner />
-}
-
+  //!RUN SPINNER BEFORE RENDER 
+    //only runs while API call in pending
+  if(isLoading) {
+      return <Spinner />
+  }
 
     //!RENDER
     return isLoading ? (<h1>Form Loading...</h1>) : (
@@ -123,6 +118,17 @@ if(isLoading) {
             <Form id="search-form">
               {/*Directly takes to park page on click */}
               {/* {form-group is a div} */}
+              <Form.Group>
+                <Form.Label className="search-label">
+                  Pick a National Park
+                </Form.Label>
+                <Form.Select
+                  className="search-selectTag mb-2"
+                  aria-label="Select A State"
+                >
+                  <option>Search for a national park</option>
+                </Form.Select>
+              </Form.Group>
 
               <div className="label-break">
                 <p className="my-0">Or...</p>

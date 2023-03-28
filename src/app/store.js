@@ -7,4 +7,8 @@ export const store = configureStore({
   reducer: {
     slice: reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ 
+    immutableCheck: false,
+    serializableCheck: false 
+  })
 });

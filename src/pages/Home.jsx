@@ -23,8 +23,6 @@ function Home() {
     //*State 
 
     //*useEffect
-    //onload fill out the list with all 50 states
-
 
 
 
