@@ -87,6 +87,13 @@ const Search = () => {
 
 
   //!EVENT LISTENERS
+  // const onChangeOption = (e) => { 
+  //   console.log(e.target.value);
+
+
+  // }
+
+
 
   //*useEffect - check for changes in state 
   //? [] - fires off if state changes 
@@ -116,7 +123,7 @@ const Search = () => {
                 >
                   <option>Search for a national park</option>
                   {apiData.data.map((park) => {
-                        return (<option key={park.id} value={park.fullName}>{park.fullName}</option>)
+                      return (<option key={park.id} value={park.fullName}>{park.fullName}</option>)
                   })}
                 </Form.Select>
               </Form.Group>
@@ -131,11 +138,14 @@ const Search = () => {
                     Search a Park By State
                     </Form.Label>
                     {/* onChange set 0-49 value to state  */}
-                    <Form.Select>
+                    <Form.Select
+                      className="search-selectTag mb-5"
+                      aria-label="Select A Park"
+                    >
                     <option>Select a State</option>
                     {usaStatesArr.map((obj, idx) => {
                     return (
-                        <option key={idx}>
+                        <option key={idx} value={obj.abrev}>
                             {obj.state}
                         </option>
                     );

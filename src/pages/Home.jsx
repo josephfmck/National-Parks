@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 //*components 
 import Search from '../components/Search';
-// import List from '../List';
+import List from '../components/List';
 
 //* bootstrap components 
 import Container from 'react-bootstrap/Container';
@@ -38,7 +38,7 @@ function Home() {
         </Container>
         {/* *search-section form takes in API data */}
         <Search />
-        {/* <List /> */}
+        <List />
     </>
   )  
 }

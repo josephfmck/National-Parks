@@ -6,7 +6,12 @@ const initialState = {
     isLoading: false,
     isError: false,
     isSuccess: false,
-    message: ''
+    message: '',
+    sortedApiData: [],
+    isLoading2: false,
+    isError2: false,
+    isSuccess2: false,
+    message2: ''
 };
 
 //!THUNKS - async actions
@@ -27,6 +32,25 @@ export const fetchData = createAsyncThunk('slice/fetchData', async (thunkAPI) =>
             return thunkAPI.rejectWithValue(message);
     }
 });
+
+
+//*Fetch Data from api THEN sort it by state
+export const fetchDataSortedByState = createAsyncThunk('slice/fetchDataSortedByState', async (thunkAPI) => {
+    try {
+        //dispatch service
+        return await service.getApiDataSortedByState();
+    } catch (error) {
+        //? return error message as payload instead
+        const message = (
+            error.response && 
+            error.response.data && 
+            error.response.data.message) || 
+            error.message || 
+            error.toString();
+            return thunkAPI.rejectWithValue(message);
+    }
+});
+
 
 
 
@@ -59,6 +83,21 @@ export const slice = createSlice({
                 state.isError = true;
                 state.message = action.payload;
                 state.apiData = [];
+            })
+            .addCase(fetchDataSortedByState.pending, (state) => {
+                state.isLoading2 = true;
+            })
+            .addCase(fetchDataSortedByState.fulfilled, (state, action) => {
+                state.isLoading2 = false;
+                state.isSuccess2 = true;
+                state.message2 = action.payload;
+                state.sortedApiData = action.payload;
+            })
+            .addCase(fetchDataSortedByState.rejected, (state, action) => {
+                state.isLoading2 = false;
+                state.isError2 = true;
+                state.message2 = action.payload;
+                state.sortedApiData = [];
             })
     }
 });

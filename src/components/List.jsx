@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useInsertionEffect } from 'react';
 
 //*API
 // import axios from 'axios';
@@ -15,10 +15,21 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 
 import {useDispatch, useSelector} from 'react-redux'
+import {fetchDataSortedByState} from '../features/slice'
 
+import Spinner from './Spinner';
 
 function List() {
-  return (
+  const dispatch = useDispatch();
+
+  const {sortedApiData, isLoading2, isSuccess2, isError2, message2} = useSelector(state => state.slice)
+
+  useEffect(() => {
+
+    dispatch(fetchDataSortedByState());
+  }, [dispatch]);
+
+  return !isSuccess2 ? <Spinner/> :  (
     <>
     {/* SECTION Parks by State */}
     <section id="parks-by-state-section">
@@ -29,17 +40,15 @@ function List() {
           {/* sortedParksByState2D[0] = Alabama arr of 8 parks */}
 
           {/* && = if selectedStateVal isnt null, is null until you select state option */}
-            return (
               <Col>
                 <Card style={{ width: '18rem', height:'100%' }}>
                   <Card.Img variant="top" src={0} />
                   <Card.Body>
-                    <Card.Title>{0}</Card.Title>
+                    <Card.Title>0</Card.Title>
                     <Button variant="primary">Select</Button>
                   </Card.Body>
                 </Card>
               </Col>
-            )
         </Row>
       </Container>
     </section>
