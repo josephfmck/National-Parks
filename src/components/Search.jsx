@@ -10,12 +10,12 @@ import Form from "react-bootstrap/Form";
 // useSelector - select from the state to bring in
 // useDispatch - dispatch actions to store (functions, API calls, thunk functions)
 import {useDispatch, useSelector} from 'react-redux'
+//*
+import {fetchData, resetStatus} from '../features/slice'
+
 
 //*components
 import Spinner from "./Spinner";
-
-//*
-import {fetchData, resetStatus} from '../features/slice'
 
 
 const usaStatesArr = [
@@ -71,21 +71,19 @@ const usaStatesArr = [
     { state: "Wyoming", abrev: "WY" },
 ];
 
-//!State to use 
-//isLoading, api state 
-
 
 
 
 
 //if isLoading false then show the form else show a Loading... message 
 const Search = () => {
-  //!STATE 
+  //!COMP STATE 
+
+  //!SLICE STATE 
   const dispatch = useDispatch(); 
 
   //*grab state from store Slice 
   const {apiData, isLoading, isSuccess, isError, message} = useSelector((state) => state.slice);
-
 
 
   //!EVENT LISTENERS
@@ -93,24 +91,14 @@ const Search = () => {
   //*useEffect - check for changes in state 
   //? [] - fires off if state changes 
   useEffect(() => {
-
+    //have api data in state before rendering
     dispatch(fetchData());
-
-    //reset status, keeping ONLY api data same
-    // return () => {
-    //   dispatch(resetStatus());
-    // }
 
   }, [dispatch]);
 
   //!RUN SPINNER BEFORE RENDER 
-    //only runs while API call in pending
-  if(isLoading) {
-      return <Spinner />
-  }
-
     //!RENDER
-    return isLoading ? (<h1>Form Loading...</h1>) : (
+    return !isSuccess ? <Spinner/> : (
     <>
       <section id="search-section">
         <Container>
@@ -127,6 +115,9 @@ const Search = () => {
                   aria-label="Select A State"
                 >
                   <option>Search for a national park</option>
+                  {apiData.data.map((park) => {
+                        return (<option key={park.id} value={park.fullName}>{park.fullName}</option>)
+                  })}
                 </Form.Select>
               </Form.Group>
 

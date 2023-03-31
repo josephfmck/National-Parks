@@ -1,7 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import service from './service';
 
-
 const initialState = {
     apiData: [],
     isLoading: false,
