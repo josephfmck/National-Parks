@@ -22,7 +22,7 @@ import Spinner from './Spinner';
 function List() {
   const dispatch = useDispatch();
 
-  const {sortedApiData, isLoading2, isSuccess2, isError2, message2} = useSelector(state => state.slice)
+  const {sortedApiData, isLoading2, isSuccess2, isError2, message2, onChangeVal} = useSelector(state => state.slice)
 
   useEffect(() => {
 
@@ -36,19 +36,22 @@ function List() {
       <Container>
         {/* <p>{`${apiState}`}</p> */}
         <Row className='my-3'>
-
-          {/* sortedParksByState2D[0] = Alabama arr of 8 parks */}
-
-          {/* && = if selectedStateVal isnt null, is null until you select state option */}
-              <Col>
+          {/* sortedApiData[0] - arr of parks in 1 state */}
+          {/* sortedApiData[0][0] - 1 park in 1 state */}
+          {/* sortedApiData[state from state option input] */}
+          {!onChangeVal ? '' : sortedApiData[onChangeVal].map((park, index) => {
+            return (
+              <Col key={index}>
                 <Card style={{ width: '18rem', height:'100%' }}>
-                  <Card.Img variant="top" src={0} />
+                  <Card.Img variant="top" src={park.images[0].url} />
                   <Card.Body>
-                    <Card.Title>0</Card.Title>
+                    <Card.Title>{park.fullName}</Card.Title>
                     <Button variant="primary">Select</Button>
                   </Card.Body>
                 </Card>
               </Col>
+            )
+          })}
         </Row>
       </Container>
     </section>

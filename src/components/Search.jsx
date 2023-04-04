@@ -11,7 +11,7 @@ import Form from "react-bootstrap/Form";
 // useDispatch - dispatch actions to store (functions, API calls, thunk functions)
 import {useDispatch, useSelector} from 'react-redux'
 //*
-import {fetchData, resetStatus} from '../features/slice'
+import {fetchData, resetStatus, onChangeVal} from '../features/slice'
 
 
 //*components
@@ -87,11 +87,13 @@ const Search = () => {
 
 
   //!EVENT LISTENERS
-  // const onChangeOption = (e) => { 
-  //   console.log(e.target.value);
+  //*onChange for state select
+  const onChange = (e) => { 
+    console.log(e.target.value);
 
-
-  // }
+    //set slice of state to select value, updating the <List/>
+    dispatch(onChangeVal(e.target.value));
+  }
 
 
 
@@ -141,11 +143,12 @@ const Search = () => {
                     <Form.Select
                       className="search-selectTag mb-5"
                       aria-label="Select A Park"
+                      onChange={onChange}
                     >
                     <option>Select a State</option>
                     {usaStatesArr.map((obj, idx) => {
                     return (
-                        <option key={idx} value={obj.abrev}>
+                        <option key={idx} value={idx}>
                             {obj.state}
                         </option>
                     );

@@ -11,7 +11,8 @@ const initialState = {
     isLoading2: false,
     isError2: false,
     isSuccess2: false,
-    message2: ''
+    message2: '',
+    onChangeVal: null
 };
 
 //!THUNKS - async actions
@@ -65,6 +66,9 @@ export const slice = createSlice({
             state.isError = false;
             state.isSuccess = false;
             state.message = '';
+        },
+        onChangeVal : (state, action) => {
+            state.onChangeVal = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -103,5 +107,5 @@ export const slice = createSlice({
 });
 
 
-export const {resetStatus} = slice.actions;
+export const {resetStatus, onChangeVal} = slice.actions;
 export default slice.reducer;
