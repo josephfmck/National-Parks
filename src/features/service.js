@@ -58,16 +58,21 @@ const all50StatesArr = [
 
 const all50Abrev = all50StatesArr.map((state) => state.abrev);
 
-//NPS API were calling to 
-const API_URL = 'https://developer.nps.gov/api/v1/parks?limit=467&api_key=CVikA0Ur6Sc8elaYgUcnOM9metTMgYqJalcZvYhN';
 
+const apiKey = 'aKRtFxd8R2HrJ8AXsfpYj3NOxKNfDx0rfYgRP4EE';
+
+//NPS API were calling to 
+const API_URL = `https://developer.nps.gov/api/v1/parks?limit=467&api_key=${apiKey}`;
+
+// 1 Park endpoint
+let parkCode = 'abli';
+const PARK_URL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${apiKey}`;
 
 
 //*Get api data 
 const getApiData = async () => {
     //GET request
     const response = await axios.get(API_URL);
-
 
     return response.data;
 }
@@ -111,10 +116,19 @@ const getApiDataSortedByState = async () => {
     }
 }
 
+//*Get 1 park data
+const getApiDataPark = async () => {
+    //GET request
+    const response = await axios.get(PARK_URL);
+
+    return response.data;
+}
+
 //export obj of all async functions
 const service = {
     getApiData,
-    getApiDataSortedByState
+    getApiDataSortedByState,
+    getApiDataPark
 }
 
 //! --> slice.js

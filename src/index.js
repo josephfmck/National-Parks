@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
 
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 

@@ -12,7 +12,7 @@ import axios from 'axios';
 // import { searchNPSAPI, parksWithinUSA } from '../../api/api';
 
 //* CSS
-import './index.scss';
+import './home.scss';
 
 
 //!STATIC VARIABLES

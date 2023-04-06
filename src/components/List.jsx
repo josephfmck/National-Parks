@@ -1,4 +1,4 @@
-import { useState, useEffect, useInsertionEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 //*API
 // import axios from 'axios';
@@ -32,8 +32,7 @@ function List() {
   return !isSuccess2 ? <Spinner/> :  (
     <>
     {/* SECTION Parks by State */}
-    <section id="parks-by-state-section">
-      <Container>
+      <Container id="parks-by-state-section">
         {/* <p>{`${apiState}`}</p> */}
         <Row className='my-3'>
           {/* sortedApiData[0] - arr of parks in 1 state */}
@@ -41,9 +40,9 @@ function List() {
           {/* sortedApiData[state from state option input] */}
           {!onChangeVal ? '' : sortedApiData[onChangeVal].map((park, index) => {
             return (
-              <Col key={index}>
+              <Col className="my-3" key={index}>
                 <Card style={{ width: '18rem', height:'100%' }}>
-                  <Card.Img variant="top" src={park.images[0].url} />
+                  <Card.Img variant="top" className="preview-img" src={park.images[0].url} />
                   <Card.Body>
                     <Card.Title>{park.fullName}</Card.Title>
                     <Button variant="primary">Select</Button>
@@ -54,7 +53,6 @@ function List() {
           })}
         </Row>
       </Container>
-    </section>
     </>
   )
 }

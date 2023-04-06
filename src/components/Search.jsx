@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 // import "./index.scss";
 
@@ -129,9 +130,12 @@ const Search = () => {
                   })}
                 </Form.Select>
               </Form.Group>
+              <Button variant="primary" type="submit">
+                Visit Park
+              </Button>
 
               <div className="label-break">
-                <p className="my-0">Or...</p>
+                <p className="my-5">Or...</p>
               </div>
 
                 {/* Brings up component list of all parks within state */}

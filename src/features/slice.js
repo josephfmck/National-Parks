@@ -12,7 +12,12 @@ const initialState = {
     isError2: false,
     isSuccess2: false,
     message2: '',
-    onChangeVal: null
+    onChangeVal: null,
+    parkApiData: [],
+    isLoading3: false,
+    isError3: false,
+    isSuccess3: false,
+    message3: ''
 };
 
 //!THUNKS - async actions
@@ -52,6 +57,22 @@ export const fetchDataSortedByState = createAsyncThunk('slice/fetchDataSortedByS
     }
 });
 
+//*Fetch Data from api for 1 park
+export const fetchDataPark = createAsyncThunk('slice/fetchDataPark', async (thunkAPI) => {
+    try {
+        //dispatch service
+        return await service.getApiDataPark();
+    } catch (error) {
+        //? return error message as payload instead
+        const message = (
+            error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            error.message ||
+            error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
 
 
 
@@ -102,6 +123,21 @@ export const slice = createSlice({
                 state.isError2 = true;
                 state.message2 = action.payload;
                 state.sortedApiData = [];
+            })
+            .addCase(fetchDataPark.pending, (state) => {
+                state.isLoading3 = true;
+            })
+            .addCase(fetchDataPark.fulfilled, (state, action) => {
+                state.isLoading3 = false;
+                state.isSuccess3 = true;
+                state.message3 = action.payload;
+                state.parkApiData = action.payload;
+            })
+            .addCase(fetchDataPark.rejected, (state, action) => {
+                state.isLoading3 = false;
+                state.isError3 = true;
+                state.message3 = action.payload;
+                state.parkApiData = [];
             })
     }
 });
