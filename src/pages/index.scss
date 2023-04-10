@@ -127,7 +127,16 @@
     }
 }
 
-#container {
-    color: white;
+//*Info Container
+#info-container {
+    .info {
+        background: white;
+        color: black;
+        border-radius: 5px;
+
+        p {
+            font-size: 22px;
+        }
+    }
 }
 
