@@ -57,11 +57,17 @@ export const fetchDataSortedByState = createAsyncThunk('slice/fetchDataSortedByS
     }
 });
 
+
+
 //*Fetch Data from api for 1 park
 export const fetchDataPark = createAsyncThunk('slice/fetchDataPark', async (thunkAPI) => {
+    //* parkCode is coming from the dispatch in <Park/>
+    // const {thunkAPI, parkCode} = argsObj;
     try {
-        //dispatch service
-        return await service.getApiDataPark();
+        //?thunkAPI = obj that contains parkCode from the dispatch in <Park/>
+        console.log({"thunkAPi": thunkAPI});
+        //dispatch service FETCH
+        return await service.getApiDataPark(thunkAPI);
     } catch (error) {
         //? return error message as payload instead
         const message = (

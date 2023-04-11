@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 
+
 //!STATIC VARIABLES
 const all50StatesArr = [
     { state: "Alabama", abrev: "AL" },
@@ -64,9 +65,10 @@ const apiKey = 'aKRtFxd8R2HrJ8AXsfpYj3NOxKNfDx0rfYgRP4EE';
 //NPS API were calling to 
 const API_URL = `https://developer.nps.gov/api/v1/parks?limit=467&api_key=${apiKey}`;
 
+
 // 1 Park endpoint
-let parkCode = 'abli';
-const PARK_URL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${apiKey}`;
+// let parkCode = 'abli';
+// const PARK_URL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${apiKey}`;
 
 
 //*Get api data 
@@ -117,9 +119,13 @@ const getApiDataSortedByState = async () => {
 }
 
 //*Get 1 park data
-const getApiDataPark = async () => {
+const getApiDataPark = async (parkCode) => {
+    //! WORK ON THIS
+    console.log({"service parkCode": parkCode})
     //GET request
-    const response = await axios.get(PARK_URL);
+        //? apiKey from this file
+        //? parkCode comes from <-- slice.js <-- <Park/>
+    const response = await axios.get(`https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${apiKey}`);
 
     return response.data;
 }

@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+//* router to grab dynamic parkCode 
+import { useParams } from 'react-router-dom';
 
 //*bootstrap components 
 import Container from 'react-bootstrap/Container';
@@ -17,6 +19,11 @@ import Spinner from '../components/Spinner';
 import './index.scss';
 
 function Park() {
+    //*grab parkCode from url
+    const { parkCode } = useParams();
+    console.log(parkCode);
+
+
 
     //!SLICE STATE
     const dispatch = useDispatch();
@@ -27,8 +34,10 @@ function Park() {
 
     useEffect(() => {
 
-        dispatch(fetchDataPark());
-    }, [dispatch]);
+        console.log({'useEffect parkCode': parkCode});
+        //*fetch park using parkCode
+        dispatch(fetchDataPark(parkCode));
+    }, [dispatch, parkCode]);
 
   return !isSuccess3 ? <Spinner/> : (
     <div id="bg-img" 
