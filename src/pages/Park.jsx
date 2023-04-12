@@ -71,10 +71,13 @@ function Park() {
                     )
                 })}
             </Row>
-            <div className='info p-4 my-5'>
-                <h1>Operating Hours</h1>
-                <h3>{parkApiData.data[0].operatingHours[0].description}</h3>            
-            </div>
+            {parkApiData.data[0].operatingHours[0].description ? (                
+                <div className='info p-4 my-5'>
+                    <h1>Operating Hours</h1>
+                    <h3>{parkApiData.data[0].operatingHours[0].description}</h3>            
+                </div>
+                ) : null
+            }
             <div className='info p-4 my-5'>
                 <h1>Address:</h1>
                     <Row>

@@ -18,7 +18,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home/>} />
-          {/* <Route path="/park/:parkCode" element={<Park/>} /> */}
           <Route path="/park/:parkCode" element={<Park/>} />
         </Routes>
       </Router>

@@ -11,8 +11,12 @@ import Button from "react-bootstrap/Button";
 // useSelector - select from the state to bring in
 // useDispatch - dispatch actions to store (functions, API calls, thunk functions)
 import {useDispatch, useSelector} from 'react-redux'
-//*
-import {fetchData, resetStatus, onChangeVal} from '../features/slice'
+
+//*react router redirect  - navigate to other pages
+import { Redirect, Link } from 'react-router-dom'
+
+//*Redux
+import {fetchData, resetStatus, onChangeStateAction, onChangeParkAction} from '../features/slice'
 
 
 //*components
@@ -84,17 +88,40 @@ const Search = () => {
   const dispatch = useDispatch(); 
 
   //*grab state from store Slice 
-  const {apiData, isLoading, isSuccess, isError, message} = useSelector((state) => state.slice);
+  const {apiData, isLoading, isSuccess, isError, message, onChangeParkVal} = useSelector((state) => state.slice);
 
 
   //!EVENT LISTENERS
-  //*onChange for state select
-  const onChange = (e) => { 
+  //*onChangePark for park select
+  const onChangePark = (e) => {
+    console.log(e.target.value);
+
+
+    //set slice of state to select value, parkCode to submit and redirect to <Park/>
+    dispatch(onChangeParkAction(e.target.value));
+  }
+
+  //*onChangeState for state select
+  const onChangeState = (e) => { 
     console.log(e.target.value);
 
     //set slice of state to select value, updating the <List/>
-    dispatch(onChangeVal(e.target.value));
+    dispatch(onChangeStateAction(e.target.value));
   }
+
+  //*onSubmit for form 
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if(!onChangeParkVal) {
+  //     return alert('Please select a park')
+  //   } else {
+  //     console.log({'onChangePark': onChangeParkVal});
+  //     //redirect to park page
+  //     let url = `/park/${onChangeParkVal}`;
+  //     window.location = url;
+  //   }
+  // }
 
 
 
@@ -123,15 +150,21 @@ const Search = () => {
                 <Form.Select
                   className="search-selectTag mb-2"
                   aria-label="Select A State"
+                  onChange={onChangePark}
                 >
                   <option>Search for a national park</option>
                   {apiData.data.map((park) => {
-                      return (<option key={park.id} value={park.fullName}>{park.fullName}</option>)
+                      return (<option key={park.id} value={park.parkCode}>{park.fullName}</option>)
                   })}
                 </Form.Select>
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Visit Park
+              <Button 
+                variant="primary" 
+                type="submit"
+              >
+                <Link to={`/park/${onChangeParkVal}`}>
+                  Visit Park
+                </Link>
               </Button>
 
               <div className="label-break">
@@ -143,11 +176,11 @@ const Search = () => {
                     <Form.Label className="search-label">
                     Search a Park By State
                     </Form.Label>
-                    {/* onChange set 0-49 value to state  */}
+                    {/* onChangeState set 0-49 value to state  */}
                     <Form.Select
                       className="search-selectTag mb-5"
                       aria-label="Select A Park"
-                      onChange={onChange}
+                      onChange={onChangeState}
                     >
                     <option>Select a State</option>
                     {usaStatesArr.map((obj, idx) => {

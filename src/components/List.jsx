@@ -22,7 +22,7 @@ import Spinner from './Spinner';
 function List() {
   const dispatch = useDispatch();
 
-  const {sortedApiData, isLoading2, isSuccess2, isError2, message2, onChangeVal} = useSelector(state => state.slice)
+  const {sortedApiData, isLoading2, isSuccess2, isError2, message2, onChangeStateVal} = useSelector(state => state.slice)
 
   useEffect(() => {
 
@@ -38,7 +38,7 @@ function List() {
           {/* sortedApiData[0] - arr of parks in 1 state */}
           {/* sortedApiData[0][0] - 1 park in 1 state */}
           {/* sortedApiData[state from state option input] */}
-          {!onChangeVal ? '' : sortedApiData[onChangeVal].map((park, index) => {
+          {!onChangeStateVal ? '' : sortedApiData[onChangeStateVal].map((park, index) => {
             return (
               <Col className="my-3" key={index}>
                 <Card style={{ width: '18rem', height:'100%' }}>

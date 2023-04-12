@@ -12,12 +12,13 @@ const initialState = {
     isError2: false,
     isSuccess2: false,
     message2: '',
-    onChangeVal: null,
+    onChangeStateVal: null,
     parkApiData: [],
     isLoading3: false,
     isError3: false,
     isSuccess3: false,
-    message3: ''
+    message3: '',
+    onChangeParkVal: null
 };
 
 //!THUNKS - async actions
@@ -94,8 +95,11 @@ export const slice = createSlice({
             state.isSuccess = false;
             state.message = '';
         },
-        onChangeVal : (state, action) => {
-            state.onChangeVal = action.payload;
+        onChangeStateAction : (state, action) => {
+            state.onChangeStateVal = action.payload;
+        },
+        onChangeParkAction : (state, action) => {
+            state.onChangeParkVal = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -149,5 +153,5 @@ export const slice = createSlice({
 });
 
 
-export const {resetStatus, onChangeVal} = slice.actions;
+export const {resetStatus, onChangeStateAction, onChangeParkAction} = slice.actions;
 export default slice.reducer;
