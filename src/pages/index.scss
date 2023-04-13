@@ -127,6 +127,16 @@
     }
 }
 
+//*Carousel
+#carousel-container {
+    .carousel-sizer {
+        width: 60%;
+        img {
+            height: 300px;
+        }
+    }
+} 
+
 //*Info Container
 #info-container {
     .info {
@@ -136,6 +146,20 @@
 
         p {
             font-size: 22px;
+        }
+    }
+    .park-img {
+        height: 250px;
+    }
+    .btn {
+        //center
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
         }
     }
 }

@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Carousel from 'react-bootstrap/Carousel';
 
 //*redux
 import {useDispatch, useSelector} from 'react-redux'
@@ -52,25 +54,37 @@ function Park() {
         <Container id="header" className="">
             <h1 className='text-center'><strong>{parkApiData.data[0].fullName}</strong></h1>
         </Container>
+
+
+        {/* CaROUSEL */}
+        <Container id="carousel-container">
+            <div className='carousel-sizer mx-auto'>
+                <Carousel className="px-5 mx-5">
+                {parkApiData.data[0].images.map((img, index) => {
+                    return (
+                    <Carousel.Item>
+                        <img
+                          className="d-block w-100"
+                          src={img.url}
+                          alt="First slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>{img.title}</h3>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    )
+                })}
+                </Carousel>
+            </div> 
+        </Container>
+        {/* !END */}
+
         <Container id="info-container">
             <div className='info p-3 m-5'>
                 <p>{parkApiData.data[0].description}</p> 
                 <p>{parkApiData.data[0].directionsInfo}</p>     
             </div>
-            <Row>
-                {parkApiData.data[0].images.map((img, index) => {
-                    return (
-                    <Col className="my-3" key={index}>
-                        <Card style={{ width: '18rem', height:'100%' }}>
-                            <Card.Img variant="top" className="preview-img" src={img.url} />
-                            <Card.Body>
-                                <Card.Title>{img.title}</Card.Title>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    )
-                })}
-            </Row>
+
             {parkApiData.data[0].operatingHours[0].description ? (                
                 <div className='info p-4 my-5'>
                     <h1>Operating Hours</h1>
@@ -78,30 +92,44 @@ function Park() {
                 </div>
                 ) : null
             }
-            <div className='info p-4 my-5'>
-                <h1>Address:</h1>
-                    <Row>
-                        <h3>{parkApiData.data[0].addresses[0].line1}</h3>
-                    </Row>
-                    <Row>
-                        <h3>
+            <Row>
+                <Col>
+                    <div className='info p-4 my-5'>
+                        <h1>Address:</h1>
+                        <Row>
+                            <h3>{parkApiData.data[0].addresses[0].line1}</h3>
+                        </Row>
+                        <Row>
+                            <h3>
                             {parkApiData.data[0].addresses[0].city},
                             {parkApiData.data[0].addresses[0].stateCode}
                             {parkApiData.data[0].addresses[0].postalCode}
-                        </h3>
-                    </Row>
-            </div>
-            <div className="info p-4 my-5">
-                <h1>Contact Info</h1>
-                <h3>{parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}</h3>
-                <h3>{parkApiData.data[0].contacts.emailAddresses[0].emailAddress}</h3>
-            </div>
+                            </h3>
+                        </Row>
+                    </div>
+                </Col>
+                <Col>
+                    <div className="info p-4 my-5">
+                        <h1>Contact Info</h1>
+                        <h3>{parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}</h3>
+                        <h3>{parkApiData.data[0].contacts.emailAddresses[0].emailAddress}</h3>
+                    </div>
+                </Col>
+            </Row>
+
+
+            <Button className="mx-auto px-4 py-3">
+                {/* aTag for external sites */}
+                <a href={parkApiData.data[0].url} target="_blank" rel="noreferrer">Learn More</a>
+            </Button>
             <div className="info p-4 my-5">
                 <h3>etc.</h3>
                 <h3>{parkApiData.data[0].parkCode}</h3>
                 <h3>{parkApiData.data[0].directionsUrl}</h3>
                 <h3>{parkApiData.data[0].url}</h3>
             </div>
+
+
         </Container>
         </div>
   )
