@@ -93,74 +93,74 @@
 
 
 
-//* Park Page 
-#bg-img {
-    //covers static bg-img and entire page
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    //allows scrolling over fixed bg
-    overflow-y: scroll;
+// //* Park Page 
+// #bg-img {
+//     //covers static bg-img and entire page
+//     position: fixed;
+//     top: 0;
+//     bottom: 0;
+//     right: 0;
+//     left: 0;
+//     //allows scrolling over fixed bg
+//     overflow-y: scroll;
 
-    margin: 0;
-    padding: 0;
-}
+//     margin: 0;
+//     padding: 0;
+// }
 
-//*Header <Container/>
-#header {
-    color: rgb(0, 56, 0);
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 10px;
+// //*Header <Container/>
+// #header {
+//     color: rgb(0, 56, 0);
+//     background: rgba(255, 255, 255, 0.75);
+//     border-radius: 10px;
     
     
-    h1 {
-        font-size: 60px;
-        margin-top: 27px;
-        margin-bottom: 7px;
-    }
+//     h1 {
+//         font-size: 60px;
+//         margin-top: 27px;
+//         margin-bottom: 7px;
+//     }
 
-    h3 {
-        font-size: 25px;
-        font-weight: bold;
-    }
-}
+//     h3 {
+//         font-size: 25px;
+//         font-weight: bold;
+//     }
+// }
 
-//*Carousel
-#carousel-container {
-    .carousel-sizer {
-        width: 60%;
-        img {
-            height: 300px;
-        }
-    }
-} 
+// //*Carousel
+// #carousel-container {
+//     .carousel-sizer {
+//         width: 60%;
+//         img {
+//             height: 300px;
+//         }
+//     }
+// } 
 
-//*Info Container
-#info-container {
-    .info {
-        background: white;
-        color: black;
-        border-radius: 5px;
+// //*Info Container
+// #info-container {
+//     .info {
+//         background: white;
+//         color: black;
+//         border-radius: 5px;
 
-        p {
-            font-size: 22px;
-        }
-    }
-    .park-img {
-        height: 250px;
-    }
-    .btn {
-        //center
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        a {
-            color: white;
-            text-decoration: none;
-            font-size: 24px;
-        }
-    }
-}
+//         p {
+//             font-size: 22px;
+//         }
+//     }
+//     .park-img {
+//         height: 250px;
+//     }
+//     .btn {
+//         //center
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         a {
+//             color: white;
+//             text-decoration: none;
+//             font-size: 24px;
+//         }
+//     }
+// }
 

@@ -32,9 +32,9 @@ function Home() {
     //*RENDER 
     return (
     <>
-        <Container id="header">
-            <h1 className="text-center"><strong>NATIONAL PARKS</strong></h1>
-            <h3 className="text-center">TRAVEL GUIDE</h3>
+        <Container id="header" className="mt-5 text-center">
+            <h1><strong>NATIONAL PARKS</strong></h1>
+            <h3><strong>TRAVEL GUIDE</strong></h3>
         </Container>
         {/* *search-section form takes in API data */}
         <Search />

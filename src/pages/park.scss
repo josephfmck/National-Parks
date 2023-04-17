@@ -1,0 +1,70 @@
+//* Park Page 
+#bg-img {
+    //covers static bg-img and entire page
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    //allows scrolling over fixed bg
+    overflow-y: scroll;
+
+    margin: 0;
+    padding: 0;
+}
+
+//*Header <Container/>
+#park-header {
+    color: rgb(0, 56, 0);
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 5px 5px 0px 0px;
+
+    h1 {
+        font-size: 60px;
+    }
+}
+
+//*Carousel
+#carousel-container {
+    .carousel-sizer {
+        width: 70%;
+        img {
+            height: 350px;
+        }
+
+        .carousel-caption {
+            color: #fff;
+            text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000, 1px 1px 6px #000;
+            font-weight: bold;
+            font-size: 24px;
+        }
+    }
+} 
+
+//*Info Container
+#info-container {
+    .info {
+        background: rgba(255, 255, 255, 0.9);
+        color: black;
+        border-radius: 0px;
+
+        p {
+            font-size: 22px;
+        }
+    }
+    .park-img {
+        height: 250px;
+    }
+    .btn {
+        //center
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+    }
+}
+

@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-// import "./index.scss";
 
 // useSelector - select from the state to bring in
 // useDispatch - dispatch actions to store (functions, API calls, thunk functions)
@@ -161,6 +160,7 @@ const Search = () => {
               <Button 
                 variant="primary" 
                 type="submit"
+                className="mt-3 px-3 py-2"
               >
                 <Link to={`/park/${onChangeParkVal}`}>
                   Visit Park
@@ -168,7 +168,7 @@ const Search = () => {
               </Button>
 
               <div className="label-break">
-                <p className="my-5">Or...</p>
+                <p className="my-3">OR</p>
               </div>
 
                 {/* Brings up component list of all parks within state */}
@@ -192,17 +192,6 @@ const Search = () => {
                     })}
                     </Form.Select>
                 </Form.Group>
-
-              {/* Brings up component list of all parks within state */}
-
-
-              {/* REPLACED WITH ONCLICK ON THE OPTIONS ABOVE */}
-              {/* <button
-              className="btn btn-light btn-lg search-btn"
-              id="select-state-btn"
-            >
-              SELECT PARK
-            </button> */}
             </Form>
           </Row>
         </Container>

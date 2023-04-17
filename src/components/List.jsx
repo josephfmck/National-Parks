@@ -17,12 +17,20 @@ import Button from 'react-bootstrap/Button'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchDataSortedByState} from '../features/slice'
 
+import { Link } from 'react-router-dom';
+
 import Spinner from './Spinner';
 
 function List() {
   const dispatch = useDispatch();
 
   const {sortedApiData, isLoading2, isSuccess2, isError2, message2, onChangeStateVal} = useSelector(state => state.slice)
+
+
+
+
+
+
 
   useEffect(() => {
 
@@ -45,7 +53,11 @@ function List() {
                   <Card.Img variant="top" className="preview-img" src={park.images[0].url} />
                   <Card.Body>
                     <Card.Title>{park.fullName}</Card.Title>
-                    <Button variant="primary">Select</Button>
+                    <Button variant="primary">
+                      <Link to={`/park/${park.parkCode}`}>
+                        Select
+                      </Link>
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>

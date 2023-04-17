@@ -18,7 +18,7 @@ import { fetchDataPark } from '../features/slice';
 import Spinner from '../components/Spinner';
 
 //*CSS 
-import './index.scss';
+import './park.scss';
 
 function Park() {
     //*grab parkCode from url
@@ -51,13 +51,13 @@ function Park() {
                 backgroundRepeat: 'no-repeat'
             }}
         >
-        <Container id="header" className="">
-            <h1 className='text-center'><strong>{parkApiData.data[0].fullName}</strong></h1>
+        <Container id="park-header" className="mt-5 text-center">
+            <div>
+                <h1><strong>{parkApiData.data[0].fullName}</strong></h1>
+            </div>
         </Container>
 
-
-        {/* CaROUSEL */}
-        <Container id="carousel-container">
+        <Container id="carousel-container" className='my-4'>
             <div className='carousel-sizer mx-auto'>
                 <Carousel className="px-5 mx-5">
                 {parkApiData.data[0].images.map((img, index) => {
@@ -77,59 +77,53 @@ function Park() {
                 </Carousel>
             </div> 
         </Container>
-        {/* !END */}
 
         <Container id="info-container">
-            <div className='info p-3 m-5'>
+            <div className='info p-3'>
                 <p>{parkApiData.data[0].description}</p> 
                 <p>{parkApiData.data[0].directionsInfo}</p>     
             </div>
 
-            {parkApiData.data[0].operatingHours[0].description ? (                
+            {/* {parkApiData.data[0].operatingHours[0].description ? (                
                 <div className='info p-4 my-5'>
                     <h1>Operating Hours</h1>
                     <h3>{parkApiData.data[0].operatingHours[0].description}</h3>            
                 </div>
                 ) : null
-            }
-            <Row>
+            } */}
+            <Row className='mb-5'>
                 <Col>
-                    <div className='info p-4 my-5'>
-                        <h1>Address:</h1>
+                    <div className='info p-4 mt-5'>
+                        <h3>Address:</h3>
                         <Row>
-                            <h3>{parkApiData.data[0].addresses[0].line1}</h3>
+                            <p className='m-0'>{parkApiData.data[0].addresses[0].line1}</p>
                         </Row>
                         <Row>
-                            <h3>
-                            {parkApiData.data[0].addresses[0].city},
-                            {parkApiData.data[0].addresses[0].stateCode}
-                            {parkApiData.data[0].addresses[0].postalCode}
-                            </h3>
+                            <p className='m-0'>{`${parkApiData.data[0].addresses[0].city}, ${parkApiData.data[0].addresses[0].stateCode} ${parkApiData.data[0].addresses[0].postalCode}`}
+                            </p>
                         </Row>
                     </div>
                 </Col>
                 <Col>
-                    <div className="info p-4 my-5">
-                        <h1>Contact Info</h1>
-                        <h3>{parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}</h3>
-                        <h3>{parkApiData.data[0].contacts.emailAddresses[0].emailAddress}</h3>
+                    <div className="info p-4 mt-5">
+                        <h3>Contact Info</h3>
+                        <p>{parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}</p>
+                        <p>{parkApiData.data[0].contacts.emailAddresses[0].emailAddress}</p>
                     </div>
                 </Col>
             </Row>
 
 
-            <Button className="mx-auto px-4 py-3">
+            <Button className="mx-auto px-3 py-2 mb-5">
                 {/* aTag for external sites */}
                 <a href={parkApiData.data[0].url} target="_blank" rel="noreferrer">Learn More</a>
             </Button>
-            <div className="info p-4 my-5">
+            {/* <div className="info p-4 my-5">
                 <h3>etc.</h3>
                 <h3>{parkApiData.data[0].parkCode}</h3>
                 <h3>{parkApiData.data[0].directionsUrl}</h3>
                 <h3>{parkApiData.data[0].url}</h3>
-            </div>
-
-
+            </div> */}
         </Container>
         </div>
   )
