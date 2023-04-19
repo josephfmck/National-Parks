@@ -1,4 +1,8 @@
 //* Home Page 
+html {
+    //*Smooth scrolling enabled 
+    scroll-behavior: smooth;
+}
 
 //*Header <Container/>
 #header {
@@ -28,13 +32,6 @@
     
         // <Form-Group/>
         div {
-            //<Form-Label/>
-            .search-label {
-                color: #fff;
-                text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000, 1px 1px 6px #000;
-                font-weight: bold;
-                font-size: 24px;
-            }
             //<Form-Select/>
             .search-selectTag {
                 width: 500px;
@@ -74,13 +71,24 @@
 
 //*<List/>
 .container#parks-by-state-section {
-        .preview-img {
-            height: 250px;
+    .title {
+        display: flex;
+        justify-content: center;
+        h1 {
+            color: #fff;
+            text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000,
+            1px 1px 6px #000;
+            font-weight: bold;
         }
+    }
 
-        a {
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-        }
+    .preview-img {
+        height: 250px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+    }
 }

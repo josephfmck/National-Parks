@@ -76,9 +76,6 @@ const usaStatesArr = [
 ];
 
 
-
-
-
 //if isLoading false then show the form else show a Loading... message 
 const Search = () => {
   //!COMP STATE 
@@ -98,6 +95,7 @@ const Search = () => {
 
     //set slice of state to select value, parkCode to submit and redirect to <Park/>
     dispatch(onChangeParkAction(e.target.value));
+    document.location.href = `/park/${e.target.value}`;
   }
 
   //*onChangeState for state select
@@ -106,22 +104,9 @@ const Search = () => {
 
     //set slice of state to select value, updating the <List/>
     dispatch(onChangeStateAction(e.target.value));
+    //*smooth scroll down to parks list
+    document.location.href = "#parks-by-state-section";
   }
-
-  //*onSubmit for form 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if(!onChangeParkVal) {
-  //     return alert('Please select a park')
-  //   } else {
-  //     console.log({'onChangePark': onChangeParkVal});
-  //     //redirect to park page
-  //     let url = `/park/${onChangeParkVal}`;
-  //     window.location = url;
-  //   }
-  // }
-
 
 
   //*useEffect - check for changes in state 
@@ -143,9 +128,6 @@ const Search = () => {
               {/*Directly takes to park page on click */}
               {/* {form-group is a div} */}
               <Form.Group>
-                <Form.Label className="search-label">
-                  Pick a National Park
-                </Form.Label>
                 <Form.Select
                   className="search-selectTag mb-2"
                   aria-label="Select A State"
@@ -153,19 +135,14 @@ const Search = () => {
                 >
                   <option>Search for a national park</option>
                   {apiData.data.map((park) => {
-                      return (<option key={park.id} value={park.parkCode}>{park.fullName}</option>)
+                      return (
+                      <option key={park.id} value={park.parkCode}>
+                          {park.fullName}
+                      </option>
+                      )
                   })}
                 </Form.Select>
               </Form.Group>
-              <Button 
-                variant="primary" 
-                type="submit"
-                className="mt-3 px-3 py-2"
-              >
-                <Link to={`/park/${onChangeParkVal}`}>
-                  Visit Park
-                </Link>
-              </Button>
 
               <div className="label-break">
                 <p className="my-3">OR</p>
@@ -173,16 +150,13 @@ const Search = () => {
 
                 {/* Brings up component list of all parks within state */}
                 <Form.Group>
-                    <Form.Label className="search-label">
-                    Search a Park By State
-                    </Form.Label>
                     {/* onChangeState set 0-49 value to state  */}
                     <Form.Select
                       className="search-selectTag mb-5"
                       aria-label="Select A Park"
                       onChange={onChangeState}
                     >
-                    <option>Select a State</option>
+                    <option>Search by State</option>
                     {usaStatesArr.map((obj, idx) => {
                     return (
                         <option key={idx} value={idx}>
