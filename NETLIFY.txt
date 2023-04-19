@@ -1,0 +1,130 @@
+35. Prepare & Deploy To Netlify
+
+  Not using env.local in production 
+
+  SO
+  In <GithubState/> init clientId and secret vars 
+  Check if in production
+    if not then set client and secret to personal API data 
+    if it is then set to global client and secret 
+
+    Personal: REACT_APP_GITHUB_CLIENT_ID
+    Global: GITHUB_CLIENT_ID
+
+    Replace client and secret ref to the checked vars 
+
+  NOW in "production" other people using app will use global ID and Secret 
+  While I still use personal ID and Secret 
+
+  //* NOTE: keys ARE STILL EXPOSED. Not big deal for github API since just get new keys 
+  BUT NOT GOOD FOR FUTURE PROJECTS
+
+
+
+  NOW READY FOR DEPLOYMENT TO Netlify 
+
+
+
+  Create Free account on Netlify 
+
+  IN TERM: Install Netlify CLI 
+  npm i -g netlify-cli
+
+
+  IN FILES: Create Netlify config file in root folder
+  
+  netlify.toml 
+
+  In netlify.toml 
+
+    //specify as build folder 
+    //publish="name of build folder"
+    [build]
+      publish="build"
+
+  NOW with react when running 
+    npm run build 
+  it will create a folder called "build"
+  
+  THIS IS Deployed Production Build 
+
+
+  TERM: Start netlify CLI 
+  netlify init 
+
+
+//*Create site on netlify 
+
+TERMINAL RESPONSE: 
+
+You are now logged into your Netlify account!
+
+Run netlify status for account details
+
+To see all available commands run: netlify help
+
+? What would you like to do? +  Create & configure a new site
+? Team: KeepJoein
+Choose a unique site name (e.g. the-awesome-josephfmck-site.netlify.app) or leave it blank for a random name. You can update the site name later.
+? Site name (optional): githubfinder578473
+
+Site Created
+
+Admin URL: https://app.netlify.com/sites/githubfinder578473
+URL:       https://githubfinder578473.netlify.app
+Site ID:   66e7a0ee-fc0f-4593-81ee-1e2c6d3b4d2e
+
+? Netlify CLI needs access to your GitHub account to configure Webhooks and Deploy Keys. What would you like to do? Authorize with GitHub through app.netlify.com
+? Your build command (hugo build/yarn run build/etc): react-scripts build
+? Directory to deploy (blank for current dir): build
+? Netlify functions folder: netlify/functions
+Adding deploy key to repository...
+Deploy key added!
+
+Creating Netlify GitHub Notification Hooks...
+Netlify Notification Hooks configured!
+
+Success! Netlify CI/CD Configured!
+
+This site is now configured to automatically deploy from github branches & pull requests
+
+Next steps:
+
+  git push       Push to your git repository to trigger new site builds      
+  netlify open   Open the Netlify admin URL of your site
+
+
+
+
+NOT Deployed yet, just initialized 
+App is now Initialized on our netlify account 
+
+
+ON NETLIFY SITE:    Add global environment vars 
+
+  under deploy tab
+    -deploy settings tab 
+      -environment tab 
+        Edit Environment vars 
+
+  add variables: 
+    GITHUB_CLIENT_ID = 6fa677d272683011c72b
+    GITHUB_CLIENT_SECRET = df630d3e337d9a024257bc8bededee4e50f394ba
+
+  NOW Environment Vars are stored on Server, more secure 
+  FUTURE: want a diff keys for development and production 
+
+
+Create build folder 
+TERM:
+  npm run build 
+
+NOW have build folder in root 
+build is what we want to Deploy 
+
+
+DEPLOY PRODUCTION Build 
+TERM: 
+  netlify deploy --prod 
+
+https://githubfinder578473.netlify.app
