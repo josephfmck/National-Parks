@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 //* router to grab dynamic parkCode 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 //*bootstrap components 
 import Container from 'react-bootstrap/Container';
@@ -9,6 +9,10 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
+
+//*Fontawesome icons 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLeftLong} from '@fortawesome/free-solid-svg-icons'; 
 
 //*redux
 import {useDispatch, useSelector} from 'react-redux'
@@ -51,6 +55,9 @@ function Park() {
                 backgroundRepeat: 'no-repeat'
             }}
         >
+        <Link className='back-btn' to='/'>
+            <FontAwesomeIcon icon={faLeftLong} size='2x' />
+        </Link>
         <Container id="park-header" className="mt-5 text-center">
             <div>
                 <h1><strong>{parkApiData.data[0].fullName}</strong></h1>
