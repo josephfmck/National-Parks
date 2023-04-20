@@ -90,10 +90,10 @@ function List() {
       <Container id="parks-by-state-section">
         {!onChangeStateVal ? '' : 
           <div className="title">
-            <h1 className="my-3">{`Parks Within ${usaStatesArr[onChangeStateVal].state}`}</h1>
+            <h1 className="my-3">{`${usaStatesArr[onChangeStateVal].state} National Parks`}</h1>
           </div>
         }
-        <Row className='my-3'>
+        <Row className='mb-5 pb-5'>
           {/* sortedApiData[0] - arr of parks in 1 state */}
           {/* sortedApiData[0][0] - 1 park in 1 state */}
           {/* sortedApiData[state from state option input] */}
@@ -101,14 +101,16 @@ function List() {
             return (
               <Col className="my-3" key={index}>
                 <Card style={{ width: '18rem', height:'100%' }}>
+                  <div className='img-overlay'>
+                    <Link to={`/park/${park.parkCode}`}>
+                          Visit
+                    </Link>
+                  </div>
                   <Card.Img variant="top" className="preview-img" src={park.images[0].url} />
                   <Card.Body>
-                    <Card.Title>{park.fullName}</Card.Title>
-                    <Button variant="primary">
-                      <Link to={`/park/${park.parkCode}`}>
-                        Select
-                      </Link>
-                    </Button>
+                    <Card.Title>
+                      {park.fullName}
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               </Col>
