@@ -58,8 +58,8 @@ function Park() {
         <Link className='back-btn' to='/'>
             <FontAwesomeIcon icon={faLeftLong} size='2x' />
         </Link>
-        <Container id="park-header" className="mt-5 text-center">
-            <div>
+        <Container id="park-header-container" className="mt-5 text-center">
+            <div className='park-header'>
                 <h1><strong>{parkApiData.data[0].fullName}</strong></h1>
             </div>
         </Container>
