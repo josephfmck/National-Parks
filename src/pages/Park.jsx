@@ -55,7 +55,7 @@ function Park() {
                 backgroundRepeat: 'no-repeat'
             }}
         >
-        <Link className='back-btn' to='/'>
+        <Link className='back-btn px-3 py-0' to='/'>
             <FontAwesomeIcon icon={faLeftLong} size='2x' />
         </Link>
         <Container id="park-header-container" className="mt-5 text-center">
@@ -114,8 +114,8 @@ function Park() {
                 <Col>
                     <div className="info p-4 mt-5">
                         <h3>Contact Info</h3>
-                        <p>{parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}</p>
-                        <p>{parkApiData.data[0].contacts.emailAddresses[0].emailAddress}</p>
+                        <p className='my-0'>{`Phone Number: ${parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}`}</p>
+                        <p className='my-0'>{`Email: ${parkApiData.data[0].contacts.emailAddresses[0].emailAddress}`}</p>
                     </div>
                 </Col>
             </Row>
@@ -125,12 +125,6 @@ function Park() {
                 {/* aTag for external sites */}
                 <a href={parkApiData.data[0].url} target="_blank" rel="noreferrer">Learn More</a>
             </Button>
-            {/* <div className="info p-4 my-5">
-                <h3>etc.</h3>
-                <h3>{parkApiData.data[0].parkCode}</h3>
-                <h3>{parkApiData.data[0].directionsUrl}</h3>
-                <h3>{parkApiData.data[0].url}</h3>
-            </div> */}
         </Container>
         </div>
   )

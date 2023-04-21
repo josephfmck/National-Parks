@@ -22,8 +22,8 @@
     text-decoration: none;
     font-size: 24px;
     border-radius: 10px;
-
-    padding: 10px;
+    color: rgb(0, 56, 0);
+    background: rgba(255, 255, 255, 0.75);
 }
 
 //*Header <Container/>
@@ -32,7 +32,6 @@
     color: rgb(0, 56, 0);
     background: rgba(255, 255, 255, 0.75);
     border-radius: 5px 5px 0px 0px;
-
     h1 {
         font-size: 60px;
     }
@@ -41,16 +40,32 @@
 //*Carousel
 #carousel-container {
     .carousel-sizer {
-        width: 70%;
-        img {
-            height: 350px;
+        width: 80%;
+        //arrow controls
+        .carousel-control-prev, .carousel-control-next {
+            //align with .carousel-indicators
+            top: auto;
+            margin-bottom: 1rem;
+            z-index: 99;
         }
-
-        .carousel-caption {
-            color: #fff;
-            text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000, 1px 1px 6px #000;
-            font-weight: bold;
-            font-size: 24px;
+        .carousel-control-prev {
+            left: 25%;
+        }
+        .carousel-control-next {
+            right: 25%;
+        }
+        //holds all items
+        .carousel-inner {
+            img {
+                height: 400px;
+                object-fit: cover;
+            }
+            .carousel-caption {
+                color: #fff;
+                text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000, 1px 1px 6px #000;
+                font-weight: bold;
+                font-size: 24px;
+            }
         }
     }
 } 
