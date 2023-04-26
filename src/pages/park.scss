@@ -1,113 +1,121 @@
-//* Park Page 
-#bg-img {
-    //covers static bg-img and entire page
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    //allows scrolling over fixed bg
-    overflow-y: scroll;
-
-    margin: 0;
-    padding: 0;
-    .bg-overlay {
-        //covers #bg-img and entire page
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        //allows scrolling over fixed bg
-        overflow-y: scroll;
-        //darkens bg-img
-        background: rgba(0, 0, 0, 0.5);
-        margin: 0;
-        padding: 0;
-    }
+//* Park Page
+.bg-overlay {
+  //covers #bg-img and entire page
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  //allows scrolling over fixed bg
+  overflow-y: scroll;
+  //darkens bg-img
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding: 0;
 }
 
-.back-btn {
+#bg-img {
+  //covers static bg-img and entire page
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  //allows scrolling over fixed bg
+  overflow-y: scroll;
+
+  margin: 0;
+  padding: 0;
+}
+
+//!NEW
+#content {
+  z-index: 3;
+  position: relative;
+
+  .back-btn {
     position: absolute;
     left: 10px;
     top: 10px;
     background: #fff;
-    color:#000;
+    color: #000;
     text-decoration: none;
     font-size: 24px;
     border-radius: 10px;
     color: rgb(0, 56, 0);
     background: rgba(255, 255, 255, 0.75);
-}
+  }
 
-//*Header <Container/>
-// #park-header-container
-.park-header {
+  //*Header <Container/>
+  // #park-header-container
+  .park-header {
     color: rgb(0, 56, 0);
     background: rgba(255, 255, 255, 0.75);
     border-radius: 5px 5px 0px 0px;
     h1 {
-        font-size: 60px;
+      font-size: 60px;
     }
-}
+  }
 
-//*Carousel
-#carousel-container {
+  //*Carousel
+  #carousel-container {
     .carousel-sizer {
-        width: 80%;
-        //arrow controls
-        .carousel-control-prev, .carousel-control-next {
-            //align with .carousel-indicators
-            top: auto;
-            margin-bottom: 1rem;
-            z-index: 99;
+      width: 80%;
+      //arrow controls
+      .carousel-control-prev,
+      .carousel-control-next {
+        //align with .carousel-indicators
+        top: auto;
+        margin-bottom: 1rem;
+        z-index: 99;
+      }
+      .carousel-control-prev {
+        left: 25%;
+      }
+      .carousel-control-next {
+        right: 25%;
+      }
+      //holds all items
+      .carousel-inner {
+        img {
+          height: 400px;
+          object-fit: cover;
         }
-        .carousel-control-prev {
-            left: 25%;
+        .carousel-caption {
+          color: #fff;
+          text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000,
+            1px 1px 6px #000;
+          font-weight: bold;
+          font-size: 24px;
         }
-        .carousel-control-next {
-            right: 25%;
-        }
-        //holds all items
-        .carousel-inner {
-            img {
-                height: 400px;
-                object-fit: cover;
-            }
-            .carousel-caption {
-                color: #fff;
-                text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000, 1px 1px 6px #000;
-                font-weight: bold;
-                font-size: 24px;
-            }
-        }
+      }
     }
-} 
+  }
 
-//*Info Container
-#info-container {
+  //*Info Container
+  #info-container {
     .info {
-        background: rgba(255, 255, 255, 0.9);
-        color: black;
-        border-radius: 0px;
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border-radius: 0px;
 
-        p {
-            font-size: 22px;
-        }
+      p {
+        font-size: 22px;
+      }
     }
     .park-img {
-        height: 250px;
+      height: 250px;
     }
     .btn {
-        //center
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        a {
-            color: white;
-            text-decoration: none;
-            font-size: 24px;
-        }
+      //center
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+      }
     }
+  }
 }
-
