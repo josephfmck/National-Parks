@@ -11,6 +11,20 @@
 
     margin: 0;
     padding: 0;
+    .bg-overlay {
+        //covers #bg-img and entire page
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        //allows scrolling over fixed bg
+        overflow-y: scroll;
+        //darkens bg-img
+        background: rgba(0, 0, 0, 0.5);
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .back-btn {

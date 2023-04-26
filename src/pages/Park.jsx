@@ -55,6 +55,7 @@ function Park() {
                 backgroundRepeat: 'no-repeat'
             }}
         >
+        <div className='bg-overlay'></div>
         <Link className='back-btn px-3 py-0' to='/'>
             <FontAwesomeIcon icon={faLeftLong} size='2x' />
         </Link>
