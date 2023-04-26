@@ -9,7 +9,7 @@
   //allows scrolling over fixed bg
   overflow-y: scroll;
   //darkens bg-img
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   margin: 0;
   padding: 0;
 }
@@ -30,7 +30,6 @@
 
 //!NEW
 #content {
-  z-index: 3;
   position: relative;
 
   .back-btn {
@@ -41,16 +40,23 @@
     color: #000;
     text-decoration: none;
     font-size: 24px;
-    border-radius: 10px;
-    color: rgb(0, 56, 0);
-    background: rgba(255, 255, 255, 0.75);
+    border-radius: 10px;    
+    color: #000;
   }
+
+  //*All containers 
+//   #park-header-container,
+//   #carousel-container,
+//   #info-container{
+    
+//   }
 
   //*Header <Container/>
   // #park-header-container
   .park-header {
-    color: rgb(0, 56, 0);
-    background: rgba(255, 255, 255, 0.75);
+    color: #fff;
+    text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000,
+    1px 1px 6px #000;
     border-radius: 5px 5px 0px 0px;
     h1 {
       font-size: 60px;
@@ -60,7 +66,7 @@
   //*Carousel
   #carousel-container {
     .carousel-sizer {
-      width: 80%;
+      width: 100%;
       //arrow controls
       .carousel-control-prev,
       .carousel-control-next {
@@ -95,12 +101,17 @@
   //*Info Container
   #info-container {
     .info {
-      background: rgba(255, 255, 255, 0.9);
-      color: black;
+      color: #fff;
       border-radius: 0px;
+    //   text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000,
+    //   1px 1px 6px #000;
+      text-shadow: 2px 2px 2px #000,
+      2px -2px 2px #000,
+      -2px 2px 2px #000,
+      -2px -2px 2px #000;
 
       p {
-        font-size: 22px;
+        font-size: 2em;
       }
     }
     .park-img {

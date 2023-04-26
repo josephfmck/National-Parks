@@ -70,8 +70,8 @@ function Park() {
           </Container>
 
           <Container id="carousel-container" className="my-4">
-            <div className="carousel-sizer mx-auto">
-              <Carousel className="px-5 mx-5">
+            <div className="carousel-sizer">
+              <Carousel className="">
                 {parkApiData.data[0].images.map((img, index) => {
                   return (
                     <Carousel.Item>
@@ -106,7 +106,7 @@ function Park() {
             <Row className="mb-5">
               <Col>
                 <div className="info p-4 mt-5">
-                  <h3>Address:</h3>
+                  <h1>Address:</h1>
                   <Row>
                     <p className="m-0">
                       {parkApiData.data[0].addresses[0].line1}
@@ -121,7 +121,7 @@ function Park() {
               </Col>
               <Col>
                 <div className="info p-4 mt-5">
-                  <h3>Contact Info</h3>
+                  <h1>Contact Info</h1>
                   <p className="my-0">{`Phone Number: ${parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}`}</p>
                   <p className="my-0">{`Email: ${parkApiData.data[0].contacts.emailAddresses[0].emailAddress}`}</p>
                 </div>
