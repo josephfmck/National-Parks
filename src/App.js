@@ -5,11 +5,6 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
 import Park from './pages/Park';
 
-//! old pages
-// import Home from './components/Home';
-// import ParkPage from './components/ParkPage';
-
-
 
 //add Routes, start with path "/" and <Layout/> with <Home/> 
 function App() {
