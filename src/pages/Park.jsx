@@ -58,7 +58,7 @@ function Park() {
       >
         <div className="bg-overlay"></div>
         <div id="content">
-          <Link className="back-btn px-3 py-0" to="/">
+          <Link className="back-btn mx-1 px-2 py-0" to="/">
             <FontAwesomeIcon icon={faLeftLong} size="2x" />
           </Link>
           <Container id="park-header-container" className="mt-5 text-center">
@@ -103,10 +103,11 @@ function Park() {
                 </div>
                 ) : null
             } */}
+            <div className="division"></div>
             <Row className="mb-5">
               <Col>
                 <div className="info p-4 mt-5">
-                  <h1>Address:</h1>
+                  <h1 className="text-center mb-5">Address</h1>
                   <Row>
                     <p className="m-0">
                       {parkApiData.data[0].addresses[0].line1}
@@ -121,7 +122,7 @@ function Park() {
               </Col>
               <Col>
                 <div className="info p-4 mt-5">
-                  <h1>Contact Info</h1>
+                  <h1 className="text-center mb-5">Contact Info</h1>
                   <p className="my-0">{`Phone Number: ${parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}`}</p>
                   <p className="my-0">{`Email: ${parkApiData.data[0].contacts.emailAddresses[0].emailAddress}`}</p>
                 </div>

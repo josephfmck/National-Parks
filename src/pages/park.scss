@@ -35,12 +35,14 @@
   .back-btn {
     position: absolute;
     left: 10px;
-    top: 10px;
-    background: #fff;
-    color: #000;
+    color: #fff;
     text-decoration: none;
     font-size: 24px;
     border-radius: 10px;    
+  }
+
+  .back-btn:hover {
+    background: #fff;
     color: #000;
   }
 
@@ -70,17 +72,16 @@
       //arrow controls
       .carousel-control-prev,
       .carousel-control-next {
-        //align with .carousel-indicators
-        top: auto;
-        margin-bottom: 1rem;
-        z-index: 99;
+        background-color: #000;
+        width: 10%;
       }
-      .carousel-control-prev {
-        left: 25%;
-      }
-      .carousel-control-next {
-        right: 25%;
-      }
+      // .carousel-control-prev {
+      //   left: 20%;
+      //   bottom: 25%;
+      // }
+      // .carousel-control-next {
+      //   right: 25%;
+      // }
       //holds all items
       .carousel-inner {
         img {
@@ -114,18 +115,32 @@
         font-size: 2em;
       }
     }
-    .park-img {
-      height: 250px;
+    .division {
+      border: 1px solid #fff;
+      margin: 20px 0px 0px 0px;
     }
     .btn {
       //center
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: transparent;
+      border: 2px solid #fff;
       a {
         color: white;
         text-decoration: none;
-        font-size: 24px;
+        font-size: 3em;
+        text-shadow: 2px 2px 2px #000,
+        2px -2px 2px #000,
+        -2px 2px 2px #000,
+        -2px -2px 2px #000;
+      }
+    }
+    .btn:hover {
+      background-color: #fff;
+      a {
+        color: #000;
+        text-shadow: none;
       }
     }
   }

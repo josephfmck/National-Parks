@@ -7,9 +7,10 @@ html {
 //*Header <Container/>
 #home-header-container {
     .header {
-        color: rgb(0, 56, 0);
-        background: rgba(255, 255, 255, 0.75);
-        border-radius: 5px 5px 0px 0px;
+        color: rgb(255, 255, 255);
+        // background: rgba(255, 255, 255, 0.75);
+        text-shadow: -1px -1px 6px #000, 1px -1px 6px #000, -1px 1px 6px #000,
+        1px 1px 6px #000;
     
         h1 {
             font-size: 60px;
