@@ -37,9 +37,15 @@ html {
         div {
             //<Form-Select/>
             .search-selectTag {
+                //?100% of option value width
                 width: 500px;
                 margin: 0 auto;
                 font-size: 20px;
+                option {
+                    width: 500px;
+                    color: blue;
+                    white-space: normal;
+                }
             }
         } //!div
 
@@ -132,6 +138,42 @@ html {
             a {
                 color: white;
                 text-decoration: none;
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+
+
+//MEDIA QUERIES 
+@media (max-width: 768px) {
+    #home-header-container {
+        .header {
+            h1 {
+                font-size: 40px;
+            }
+            h3 {
+                font-size: 30px;
+            }
+        }
+    }
+
+    #search-section {
+        #search-form {
+            div {
+                .search-selectTag {
+                    width: 300px;
+                    margin: 0 auto;
+                    font-size: 20px;
+                }
+            } //!div
+        } //!#search-form
+    } //!#search-section
+
+    .container#parks-by-state-section {
+        .title {
+            h1 {
                 font-size: 30px;
             }
         }

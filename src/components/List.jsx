@@ -99,7 +99,7 @@ function List() {
           {/* sortedApiData[state from state option input] */}
           {!onChangeStateVal ? '' : sortedApiData[onChangeStateVal].map((park, index) => {
             return (
-              <Col className="my-3" key={index}>
+              <Col className="my-3 d-flex justify-content-center align-items-center" key={index}>
                 <Card style={{ width: '18rem', height:'100%' }}>
                   <div className='img-overlay'>
                     <Link to={`/park/${park.parkCode}`}>
