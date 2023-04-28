@@ -106,6 +106,10 @@ const Search = () => {
     dispatch(onChangeStateAction(e.target.value));
     //*smooth scroll down to parks list
     document.location.href = "#parks-by-state-section";
+    //grab selectTag and add class to it to remove first option 
+    const firstOption = document.getElementById("option1");
+    //set first option style to display none
+    firstOption.style.display = "none";
   };
 
   //*useEffect - check for changes in state
@@ -159,7 +163,7 @@ const Search = () => {
                   aria-label="Select A Park"
                   onChange={onChangeState}
                 >
-                  <option>Search by State</option>
+                  <option id="option1">Search by State</option>
                   {usaStatesArr.map((obj, idx) => {
                     return (
                       <option key={idx} value={idx}>
