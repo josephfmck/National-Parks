@@ -43,8 +43,7 @@ html {
                 font-size: 20px;
                 option {
                     width: 500px;
-                    color: blue;
-                    white-space: normal;
+                    text-overflow: ellipsis;
                 }
             }
         } //!div
