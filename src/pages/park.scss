@@ -112,7 +112,22 @@
       -2px -2px 2px #000;
 
       p {
-        font-size: 2em;
+        font-size: 1.75em;
+      }
+      .row {
+        //address block
+        p {
+          display: flex;
+          justify-content: center;
+        }
+      }
+      #phone-number {
+        display: flex;
+        justify-content: center;
+      }
+      #email {
+        display: flex;
+        justify-content: center;
       }
     }
     .division {
@@ -141,6 +156,29 @@
       a {
         color: #000;
         text-shadow: none;
+      }
+    }
+  }
+}
+
+
+//Media Queries
+
+@media (max-width: 768px) {
+  #content {
+    .back-btn {
+      font-size: 10px;
+    }
+    .park-header {
+      h1 {
+        font-size: 40px;
+      }
+    }
+    #info-container {
+      .info {
+        p {
+          font-size: 20px;
+        }
       }
     }
   }

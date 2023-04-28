@@ -123,8 +123,8 @@ function Park() {
               <Col>
                 <div className="info p-4 mt-5">
                   <h1 className="text-center mb-5">Contact Info</h1>
-                  <p className="my-0">{`Phone Number: ${parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}`}</p>
-                  <p className="my-0">{`Email: ${parkApiData.data[0].contacts.emailAddresses[0].emailAddress}`}</p>
+                  <p id="phone-number" className="my-0">{`Phone Number: ${parkApiData.data[0].contacts.phoneNumbers[0].phoneNumber}`}</p>
+                  <p id="email" className="my-0">{`Email: ${parkApiData.data[0].contacts.emailAddresses[0].emailAddress}`}</p>
                 </div>
               </Col>
             </Row>
