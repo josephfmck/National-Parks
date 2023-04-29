@@ -141,9 +141,9 @@ const Search = () => {
                     {apiData.data.map((park) => {
                       return (
                         <option key={park.id} value={park.parkCode}>
-                          { park.fullName && park.fullName.length < 45 
+                          { park.fullName && park.fullName.length < 32 
                             ? park.fullName
-                            : park.fullName.substring(0, 47).concat("...") 
+                            : park.fullName.substring(0, 35).concat("...") 
                           }
                         </option>
                       );
