@@ -22,6 +22,7 @@
     "react-router-dom": "^6.8.0",
     "react-scripts": "^5.0.1",
     "sass": "^1.58.0",
+    "serve": "^14.2.0",
     "watch": "^1.0.2",
     "web-vitals": "^2.1.4"
   },
@@ -32,11 +33,12 @@
     "extensions": "js,jsx,css,scss,html"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch": "watch \"npm run build\" src"
+    "watch": "watch \"npm run build\" src",
+    "dev": "react-scripts start",
+    "start": "serve build -s -n -L -p $PORT"
   },
   "eslintConfig": {
     "extends": [
@@ -58,7 +60,6 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
-  "devDependencies": {},
   "author": "",
   "license": "ISC"
 }
