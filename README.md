@@ -1,3 +1,11 @@
+# National Parks Travel Guide
+
+This project is a travel guide for finding a National Park the user is interested in. Utilizing React and the National Park Service API.
+
+## Website
+
+https://national-parks-travel-guide.onrender.com/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
